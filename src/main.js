@@ -1,5 +1,8 @@
 import Vue from "vue";
 import App from "./App.vue";
+import vuefire from "vuefire";
+
+Vue.use(vuefire);
 
 Vue.config.productionTip = false;
 
