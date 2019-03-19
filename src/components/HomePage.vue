@@ -1,14 +1,21 @@
 <template>
   <body>
-    <div class="topnav" topmargin="0">
-      <div class="topnav-right"><a>About Us</a></div>
-    </div>
+    <!--
+      <div class="topnav" topmargin="0">
+        <div class="topnav-right"><a>About Us</a></div>
+      </div>
+    -->
     <div class="homepage">
       <img id="homepage-image" src="../assets/homepage.jpg" />
     </div>
     <div>
-      <button type="button" id="Lodging">Lodging</button>
-      <button type="button" id="course">Course</button>
+      <!-- can consider changing the content here -->
+      <router-link to="/lodging">
+        <button type="button" id="Lodging">Lodging</button>
+      </router-link>
+      <router-link to="courseSelection">
+        <button type="button" id="course">Course</button>
+      </router-link>
     </div>
   </body>
 </template>
