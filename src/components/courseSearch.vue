@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import course_admin_info from "./firebase.js";
+import course_admin_info from "../firebase.js";
 
 export default {
   name: "courseSearch",
