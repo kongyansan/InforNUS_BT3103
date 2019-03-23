@@ -51,16 +51,14 @@
 
 
 <script>
-import course_admin_info from "../firebase.js";
+import db from "../firebase.js";
 import VueChartKick from "vue-chartkick";
 import Chart from "chart.js";
 
 export default {
-  name: "courseSearch",
+  name: "courseDashboard",
   firebase: function() {
-    return {
-      courses: course_admin_info
-    };
+      courses: db.ref('course_admin_info/data'); 
   },
   computed: {
     selectedCourse: function() {
@@ -68,7 +66,8 @@ export default {
       let ans = this.courses.filter(
         course => course.course_name == "Business Analytics"
       );
-      console.log(ans[0]);
+      console.log(ans[0]); 
+      
       return ans[0];
     },
     distributionInfo: function() {

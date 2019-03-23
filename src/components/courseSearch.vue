@@ -38,13 +38,13 @@
 </template>
 
 <script>
-import course_admin_info from "../firebase.js";
+import db from "../firebase.js";
 
 export default {
   name: "courseSearch",
   firebase: function() {
     return {
-      courses: course_admin_info
+      courses: db.ref('course_admin_info/data'); 
     };
   },
   data() {

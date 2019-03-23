@@ -12,5 +12,6 @@ let config = {
 let app = firebase.initializeApp(config);
 let db = app.database();
 let course_admin_info = db.ref("/course_admin_info/data");
+let student_career_info = db.ref("/student_career_info/data");
 
-export default course_admin_info;
+export default db;

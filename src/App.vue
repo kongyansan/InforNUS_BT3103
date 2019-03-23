@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <NavBar/>
-    <courseDashboard/>
+    <courseCareerDashboard/>
   </div>
 </template>
 
@@ -10,14 +10,14 @@ import HelloWorld from "./components/HelloWorld";
 import HomePage from "./components/HomePage";
 import NavBar from "./components/NavBar";
 import Lodging from "./components/Lodging";
-import courseDashboard from "./components/courseDashboard";
+import courseCareerDashboard from "./components/courseCareerDashboard";
 
 export default {
   name: "App",
   components: {
     NavBar,
     Lodging,
-    courseDashboard
+    courseCareerDashboard
   }
 };
 </script>
