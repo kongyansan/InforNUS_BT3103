@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <NavBar/>
-    <courseCareerDashboard/>
+    <lodgingDashboard/>
   </div>
 </template>
 
@@ -11,13 +11,16 @@ import HomePage from "./components/HomePage";
 import NavBar from "./components/NavBar";
 import Lodging from "./components/Lodging";
 import courseCareerDashboard from "./components/courseCareerDashboard";
+import lodgingDashboard from "./components/lodgingDashboard";
+
 
 export default {
   name: "App",
   components: {
     NavBar,
     Lodging,
-    courseCareerDashboard
+    courseCareerDashboard,
+    lodgingDashboard
   }
 };
 </script>
