@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <section class="container">
-      <h1>Name of College</h1>
+      <h1>Demo examples of vue-chartkick</h1>
       <div class="columns">
         <div class="column">
           <h3>Faculty Breakdown</h3>
@@ -38,7 +38,6 @@
             ></wordcloud>
           </div>
         </div>
-
         <div class="column">
           <h3>Fees and Room type</h3>
           <table style="width:100%">
@@ -46,40 +45,12 @@
               <th>Items to be paid</th>
               <th>Price</th>
             </tr>
-            <tr v-for="row in this.getLodgingInfo2" v-bind:key="row.id">
+            <tr v-for="row in this.getLodgingInfo3" v-bind:key="row.id">
               <td>{{row.id}}</td>
               <td>{{row.value}}</td>
             </tr>
           </table>
         </div>
-
-        <!-- <div class="column">
-    <div style = "margin-left: 620px;"> 
-    <h4>Lodging_Info</h4>
-    <table id="LodgeTable">
-      <thead>
-        <tr>
-          <th style="width:25%;">Lodging Types</th>
-          <th style="width:25%;">Compulsory Meal Plan (Yes/No) </th>
-          <th style="width:25%;">Average Price</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr v-for="(item, item_index) in itemList" :key="item.name">
-            <td>{{ item.name }}</td>
-            <td v-for="(day, day_index) in days" @click="alert(item_index, day_index)">Click</td>
-          </tr>
-        <tr v-for="(value,key) in this.jobInfo" :key="key">
-          <td>{{ key }}</td>
-          <td>{{ value }}</td>
-        </tr>
-      </tbody>
-    </table>
-        </div>-->
-        <!-- <div class="column">
-          <h3>Downloadable Line Chart</h3>
-          <line-chart :data="chartData" :download="true"></line-chart>
-        </div>-->
       </div>
     </section>
   </div>
@@ -105,6 +76,7 @@ export default {
   },
   data() {
     return {
+      currLodging: "",
       myColors: ["#1f77b4", "#629fc9", "#94bedb", "#c9e0ef"]
     };
   },
@@ -121,25 +93,25 @@ export default {
     },
     getTravellingTime() {
       let ans = {};
-      var currLodging = "eusoff";
+      this.currLodging = "Eusoff Hall";
       var test = [];
       var faculties = [
         "School of Business",
-        "Faculty of Engineering",
+        "Engineering",
         "Faculty of Science",
-        "Faculty of Arts and Social Science",
+        "Faculty of Arts and Social Sciences",
         "School of Computing"
       ];
       for (var lodging of this.lodging_info) {
-        //   console.log(lodging["School of Business"])
-        if (lodging.lodging_name == currLodging) {
+        // console.log(lodging["School of Business"])
+        if (lodging.lodging_name == this.currLodging) {
           for (var fac of faculties) {
             // console.log(Number(lodging.fac) )
             ans[fac] = lodging[fac];
             // if ( fac=="Faculty of Arts and Social Science"){
             //     test.push([,Number(lodging[fac])])
             // }
-            test.push([fac, Number(lodging[fac])]);
+            test.push([fac, lodging[fac]]);
           }
         }
       }
@@ -149,11 +121,11 @@ export default {
     getGoodReviews() {
       var ans = {};
       var defaultWords = [];
-      var currLodging = "eusoff";
+      this.currLodging = "Eusoff Hall";
       //   console.log( (Object.values(this.lodging_info ) ))
       for (var lodging of this.lodging_info) {
         //   console.log( (lodging.lodging_name +"wtf" ) )
-        if (lodging.lodging_name == currLodging) {
+        if (lodging.lodging_name == this.currLodging) {
           // console.log( (lodging.good_reviews +"wtf" ) )
           for (var goodcomments of lodging.good_reviews) {
             //   console.log( goodcomments + "right now")
@@ -174,9 +146,9 @@ export default {
     getBadReviews() {
       var ans = {};
       var defaultWords = [];
-      var currLodging = "eusoff";
+      this.currLodging = "Eusoff Hall";
       for (var lodging of this.lodging_info) {
-        if (lodging.lodging_name == currLodging) {
+        if (lodging.lodging_name == this.currLodging) {
           for (var badcomments of lodging.bad_reviews) {
             if (!(badcomments in ans)) {
               ans[badcomments] = 0;
@@ -193,86 +165,55 @@ export default {
       return defaultWords;
     },
     getLodgingInfo2() {
-      var currLodging = "eusoff";
+      var currLodging = "Eusoff Hall";
       var test = [];
       var ans = {};
       for (var lodging of this.lodging_info) {
         if (lodging.lodging_name == currLodging) {
           test.push({
             id: "Double Room with Air Con",
-            value: lodging.double_ac
+            value: lodging.Double_AC
           });
           test.push({
             id: "Double Room without Air Con",
-            value: lodging.double_no_ac
+            value: lodging.Double_No_AC
           });
           test.push({
             id: "Single Room with Air Con",
-            value: lodging.single_ac
+            value: lodging.Single_AC
           });
           test.push({
             id: "Single Room without Air Con",
-            value: lodging.single_no_ac
+            value: lodging.Single_No_AC
           });
           test.push({ id: "Meal Plan", value: lodging.meal_plan });
         }
       }
       return test;
     },
-    getLodgingInfo() {
-      //     "lodging_name":'pgp_house',
-      // "single_no_ac": '2057',
-      //   "double_no_ac": '-1',
-      //   "single_ac":"-1",
-      //   "double_ac":'-1',
-      //  "meal_plan": '-1',
-      var ans = {};
-
-      var lodging_names = [
-        "eusoff",
-        "kent_ridge",
-        "king_edward",
-        "raffles",
-        "sheares",
-        "temasek",
-        "pgpr",
-        "pgp_house",
-        "usp",
-        "capt",
-        "tembusu",
-        "rc4",
-        "rvrc"
-      ];
-      var curr_lodging = "eusoff";
-      var rowNames = [
-        "lodging_name",
-        "single_no_ac",
-        "double_no_ac",
-        "single_ac",
-        "double_ac",
-        "meal_plan",
-        "average_total"
-      ];
+    getLodgingInfo3() {
+      var currLoding = "Eusoff Hall";
+      var infomap = {
+        Double_AC: "Double Room with Aircon",
+        Double_No_AC: "Double Room without Aircon",
+        Single_AC: "Single Room with Aircon",
+        Single_No_AC: "Single Room without Aircon"
+      };
+      var test = [];
       for (var lodging of this.lodging_info) {
-        if (lodging.lodging_name == currLodging) {
-          return lodging;
-        }
-        for (var name of rowNames) {
-          ans[rowNames] = this.lodging_info[name];
-          //   console.log(ans)
+        if (lodging.lodging_name == this.currLodging) {
+          console.log(lodging.Type_Of_Rooms);
+          var tor = lodging.Type_Of_Rooms;
+          for (var [roomType, cost] of Object.entries(tor)) {
+            test.push({
+              id: infomap[roomType],
+              value: cost
+            });
+          }
         }
       }
-    },
-    getRowNames() {
-      return [
-        "lodging_name",
-        "single_no_ac",
-        "double_no_ac",
-        "single_ac",
-        "double_ac",
-        "meal_plan",
-        "average_total"
-      ];
+      test.push({ id: "Meal Plan", value: lodging.meal_plan });
+      return test;
     }
   }
 };
