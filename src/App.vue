@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <NavBar/>
-    <router-view/>
+    <courseDashboard/>
   </div>
 </template>
 
@@ -12,6 +12,7 @@ import NavBar from "./components/NavBar";
 import Lodging from "./components/Lodging";
 import courseCareerDashboard from "./components/courseCareerDashboard";
 import lodgingDashboard from "./components/lodgingDashboard";
+import courseDashboard from "./components/courseDashboard";
 
 export default {
   name: "App",
@@ -19,7 +20,8 @@ export default {
     NavBar,
     Lodging,
     courseCareerDashboard,
-    lodgingDashboard
+    lodgingDashboard,
+    courseDashboard
   }
 };
 </script>

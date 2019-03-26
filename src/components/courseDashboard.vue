@@ -57,8 +57,8 @@ import Chart from "chart.js";
 
 export default {
   name: "courseDashboard",
-  firebase: function() {
-      courses: db.ref('course_admin_info/data'); 
+  firebase: {
+    courses: db.ref("course_admin_info/data")
   },
   computed: {
     selectedCourse: function() {
@@ -66,8 +66,8 @@ export default {
       let ans = this.courses.filter(
         course => course.course_name == "Business Analytics"
       );
-      console.log(ans[0]); 
-      
+      console.log(ans[0]);
+
       return ans[0];
     },
     distributionInfo: function() {
