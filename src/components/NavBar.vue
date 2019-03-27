@@ -1,11 +1,11 @@
 <template>
-  <body>
-    <nav class="topnav" topmargin="0">
-      <router-link to="/"> Home</router-link>
-      <router-link to="/courseSelection">Course</router-link>
-      <router-link to="/lodging">Lodging</router-link>
-    </nav>
-  </body>
+<body>
+  <nav class="topnav" topmargin="0">
+    <router-link to="/">Home</router-link>
+    <router-link to="/courseSearch">Course</router-link>
+    <router-link to="/lodging">Lodging</router-link>
+  </nav>
+</body>
 </template>
 
 <style>

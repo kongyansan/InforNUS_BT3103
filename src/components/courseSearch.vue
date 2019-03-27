@@ -1,40 +1,35 @@
 <template>
-  <body id="searchTable">
-    <input
-      type="text"
-      v-model="search"
-      id="myInput"
-      placeholder="Search Courses"
-    />
-    <h4>Categories</h4>
-    <div v-for="option in options" :key="option.text">
-      <input type="radio" v-model="selected" :value="option.text" />
-      {{ option.text }}
-    </div>
-    <table id="myTable">
-      <thead>
-        <tr>
-          <th style="width:20%;">Course</th>
-          <th style="width:20%;">Faculty</th>
-          <th style="width:20%;">
-            % of Students with Honors (Highest Distinction)
-          </th>
-          <th style="width:20%;">% of Students with Honors (Distinction)</th>
-          <th style="width:20%;">Starting Salary ($ per month)</th>
-        </tr>
-      </thead>
+<body id="searchTable">
+  <input type="text" v-model="search" id="myInput" placeholder="Search Courses">
+  <h4>Categories</h4>
+  <div v-for="option in options" :key="option.text">
+    <input type="radio" v-model="selected" :value="option.text">
+    {{ option.text }}
+  </div>
+  <table id="myTable">
+    <thead>
+      <tr>
+        <th style="width:20%;">Course</th>
+        <th style="width:20%;">Faculty</th>
+        <th style="width:20%;">% of Students with Honors (Highest Distinction)</th>
+        <th style="width:20%;">% of Students with Honors (Distinction)</th>
+        <th style="width:20%;">Starting Salary ($ per month)</th>
+      </tr>
+    </thead>
 
-      <tbody>
-        <tr v-for="(course, idx) in selectedCourses" :key="idx">
-          <td>{{ course.course_name }}</td>
-          <td>{{ course.home_faculty }}</td>
-          <td>{{ course.first_class }}</td>
-          <td>{{ course.second_class }}</td>
-          <td>{{ course.starting_salary }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </body>
+    <tbody>
+      <tr v-for="(course, idx) in selectedCourses" :key="idx">
+        <router-link
+          v-bind:to="{name:'courseDashboard', params: {course_name: course.course_name}}"
+        >{{ course.course_name }}</router-link>
+        <td>{{ course.home_faculty }}</td>
+        <td>{{ course.first_class }}</td>
+        <td>{{ course.second_class }}</td>
+        <td>{{ course.starting_salary }}</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
 </template>
 
 <script>
@@ -44,7 +39,7 @@ export default {
   name: "courseSearch",
   firebase: function() {
     return {
-      courses: db.ref('course_admin_info/data'); 
+      courses: db.ref("course_admin_info/data")
     };
   },
   data() {

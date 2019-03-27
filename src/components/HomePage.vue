@@ -1,24 +1,28 @@
 <template>
-  <body>
-    <!--
-      <div class="topnav" topmargin="0">
-        <div class="topnav-right"><a>About Us</a></div>
-      </div>
-    -->
-    <div class="homepage">
-      <img id="homepage-image" src="../assets/homepage.jpg" />
-    </div>
-    <div>
-      <!-- can consider changing the content here -->
-      <router-link to="/lodging">
-        <button type="button" id="Lodging">Lodging</button>
-      </router-link>
-      <router-link to="courseSelection">
-        <button type="button" id="course">Course</button>
-      </router-link>
-    </div>
-  </body>
+<body>
+  <div class="homepage">
+    <img id="homepage-image" src="../assets/homepage.jpg">
+  </div>
+  <div>
+    <!-- can consider changing the content here -->
+    <router-link to="/lodging">
+      <button type="button" id="Lodging">Lodging</button>
+    </router-link>
+    <router-link to="courseSelection">
+      <button type="button" id="course">Course</button>
+    </router-link>
+  </div>
+</body>
 </template>
+
+<script>
+export default {
+  name: "homepage",
+  data() {
+    return {};
+  }
+};
+</script>
 
 <style>
 #homepage-image {

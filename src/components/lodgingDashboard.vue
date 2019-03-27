@@ -95,13 +95,17 @@ import wordcloud from "vue-wordcloud";
 Vue.use(VueChartkick, { adapter: Chart });
 
 export default {
-  name: "lodging_dashboard",
+  name: "lodgingDashboard",
   firebase: {
     student_lodging_info: db.ref("student_lodging_info/data"),
     lodging_info: db.ref("lodging_info/data")
   },
   components: {
     wordcloud
+  },
+
+  created() {
+    this.lodging_name = this.$route.params.lodging_name.toLowerCase();
   },
   data() {
     return {
@@ -121,25 +125,24 @@ export default {
     },
     getTravellingTime() {
       let ans = {};
-      var currLodging = "eusoff";
       var test = [];
       var faculties = [
         "School of Business",
-        "Faculty of Engineering",
+        "Engineering",
         "Faculty of Science",
-        "Faculty of Arts and Social Science",
+        "Faculty of Arts and Social Sciences",
         "School of Computing"
       ];
       for (var lodging of this.lodging_info) {
         //   console.log(lodging["School of Business"])
-        if (lodging.lodging_name == currLodging) {
+        if (lodging.lodging_name.toLowerCase() == this.lodging_name) {
           for (var fac of faculties) {
             // console.log(Number(lodging.fac) )
             ans[fac] = lodging[fac];
             // if ( fac=="Faculty of Arts and Social Science"){
             //     test.push([,Number(lodging[fac])])
             // }
-            test.push([fac, Number(lodging[fac])]);
+            test.push([fac, lodging[fac]]);
           }
         }
       }
@@ -149,11 +152,10 @@ export default {
     getGoodReviews() {
       var ans = {};
       var defaultWords = [];
-      var currLodging = "eusoff";
       //   console.log( (Object.values(this.lodging_info ) ))
       for (var lodging of this.lodging_info) {
         //   console.log( (lodging.lodging_name +"wtf" ) )
-        if (lodging.lodging_name == currLodging) {
+        if (lodging.lodging_name.toLowerCase() == this.lodging_name) {
           // console.log( (lodging.good_reviews +"wtf" ) )
           for (var goodcomments of lodging.good_reviews) {
             //   console.log( goodcomments + "right now")
@@ -164,7 +166,6 @@ export default {
           }
         }
       }
-
       for (var comment of Object.keys(ans)) {
         defaultWords.push({ name: comment, value: ans[comment] });
       }
@@ -174,9 +175,8 @@ export default {
     getBadReviews() {
       var ans = {};
       var defaultWords = [];
-      var currLodging = "eusoff";
       for (var lodging of this.lodging_info) {
-        if (lodging.lodging_name == currLodging) {
+        if (lodging.lodging_name.toLowerCase() == this.lodging_name) {
           for (var badcomments of lodging.bad_reviews) {
             if (!(badcomments in ans)) {
               ans[badcomments] = 0;
@@ -193,86 +193,30 @@ export default {
       return defaultWords;
     },
     getLodgingInfo2() {
-      var currLodging = "eusoff";
       var test = [];
       var ans = {};
       for (var lodging of this.lodging_info) {
-        if (lodging.lodging_name == currLodging) {
+        if (lodging.lodging_name.toLowerCase() == this.lodging_name) {
           test.push({
             id: "Double Room with Air Con",
-            value: lodging.double_ac
+            value: lodging.Double_AC
           });
           test.push({
             id: "Double Room without Air Con",
-            value: lodging.double_no_ac
+            value: lodging.Double_No_AC
           });
           test.push({
             id: "Single Room with Air Con",
-            value: lodging.single_ac
+            value: lodging.Single_AC
           });
           test.push({
             id: "Single Room without Air Con",
-            value: lodging.single_no_ac
+            value: lodging.Single_No_AC
           });
           test.push({ id: "Meal Plan", value: lodging.meal_plan });
         }
       }
       return test;
-    },
-    getLodgingInfo() {
-      //     "lodging_name":'pgp_house',
-      // "single_no_ac": '2057',
-      //   "double_no_ac": '-1',
-      //   "single_ac":"-1",
-      //   "double_ac":'-1',
-      //  "meal_plan": '-1',
-      var ans = {};
-
-      var lodging_names = [
-        "eusoff",
-        "kent_ridge",
-        "king_edward",
-        "raffles",
-        "sheares",
-        "temasek",
-        "pgpr",
-        "pgp_house",
-        "usp",
-        "capt",
-        "tembusu",
-        "rc4",
-        "rvrc"
-      ];
-      var curr_lodging = "eusoff";
-      var rowNames = [
-        "lodging_name",
-        "single_no_ac",
-        "double_no_ac",
-        "single_ac",
-        "double_ac",
-        "meal_plan",
-        "average_total"
-      ];
-      for (var lodging of this.lodging_info) {
-        if (lodging.lodging_name == currLodging) {
-          return lodging;
-        }
-        for (var name of rowNames) {
-          ans[rowNames] = this.lodging_info[name];
-          //   console.log(ans)
-        }
-      }
-    },
-    getRowNames() {
-      return [
-        "lodging_name",
-        "single_no_ac",
-        "double_no_ac",
-        "single_ac",
-        "double_ac",
-        "meal_plan",
-        "average_total"
-      ];
     }
   }
 };

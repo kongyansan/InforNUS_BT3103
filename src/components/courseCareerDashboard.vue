@@ -43,7 +43,11 @@
             <td>{{ selectedCourse.second_class }}</td>
           </tr>
         </tbody>
-      </table>
+      </table> 
+
+      <router-link
+        v-bind:to="{name:'courseDashboard', params: {course_name: selectedCourse.course_name}}"
+      >Admin Info</router-link>
     </div>
   </div>
 </template>
@@ -58,6 +62,9 @@ export default {
   firebase: {
     career_info: db.ref("student_career_info/data"),
     course_info: db.ref("course_admin_info/data")
+  },
+  created() {
+    this.course_name = this.$route.params.course_name;
   },
   computed: {
     selectedCourse: function() {

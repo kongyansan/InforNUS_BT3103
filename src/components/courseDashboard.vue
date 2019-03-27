@@ -44,7 +44,12 @@
         <td>{{value}}</td>
       </tr>
     </tbody>
-  </table>
+  </table> 
+
+  <router-link v-bind:to="{name:'courseCareerDashboard', params: {course_name: selectedCourse.course_name}}">
+    CAREER 
+  </router-link> 
+
 </body>
 </template> 
 
@@ -59,12 +64,16 @@ export default {
   name: "courseDashboard",
   firebase: {
     courses: db.ref("course_admin_info/data")
-  },
+  }, 
+
+  created(){ 
+    this.course_name = this.$route.params.course_name; 
+  }, 
   computed: {
     selectedCourse: function() {
       // filter to match the parameter containing the selected course
       let ans = this.courses.filter(
-        course => course.course_name == "Business Analytics"
+        course => course.course_name == this.course_name
       );
       console.log(ans[0]);
 

@@ -1,40 +1,43 @@
 <template>
-  <body>
-    <div class="container">
-      <div class="filter">
-        <label
-          ><input type="radio" v-model="selectedCategory" value="All" />
-          All</label
-        >
-        <label
-          ><input type="radio" v-model="selectedCategory" value="hall" />
-          Halls</label
-        >
-        <label
-          ><input type="radio" v-model="selectedCategory" value="college" />
-          Residential College</label
-        >
-        <label
-          ><input type="radio" v-model="selectedCategory" value="PGP" />
-          PGP</label
-        >
+<body>
+  <div class="container">
+    <div class="filter">
+      <label>
+        <input type="radio" v-model="selectedCategory" value="All">
+        All
+      </label>
+      <label>
+        <input type="radio" v-model="selectedCategory" value="hall">
+        Halls
+      </label>
+      <label>
+        <input type="radio" v-model="selectedCategory" value="college">
+        Residential College
+      </label>
+      <label>
+        <input type="radio" v-model="selectedCategory" value="PGP">
+        PGP
+      </label>
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="card" v-for="lodg in filteredLodging" v-bind:key="lodg.name">
+      <div class="column"> 
+        <router-link
+        v-bind:to="{name:'lodgingDashboard', params: {lodging_name: lodg.name}}">
+        <img v-bind:src="lodg.img" style="width:100%">
+        <h4>{{ lodg.name }}</h4> 
+        </router-link> 
       </div>
     </div>
-    <div class="wrapper">
-      <div class="card" v-for="lodg in filteredLodging">
-        <div class="column">
-          <img v-bind:src="lodg.img" style="width:100%" />
-          <h4>{{ lodg.name }}</h4>
-        </div>
-      </div>
-    </div>
-  </body>
+  </div>
+</body>
 </template>
 
 <script>
 class Lodging {
   constructor(name, cat, img) {
-    this.name = name;
+    this.name = name.toLowerCase();
     this.cat = cat;
     this.img = img;
   }
@@ -46,7 +49,7 @@ export default {
       //search: "",
       lodgings: [
         new Lodging(
-          "Temsaek Hall",
+          "Temasek Hall",
           "hall",
           require("../assets/temasekhall.jpg")
         ),
