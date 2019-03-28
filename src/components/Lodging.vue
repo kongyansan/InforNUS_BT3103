@@ -1,34 +1,37 @@
 <template>
 <body>
-  <div class="container">
-    <div class="filter">
-      <label>
-        <input type="radio" v-model="selectedCategory" value="All">
-        All
-      </label>
-      <label>
-        <input type="radio" v-model="selectedCategory" value="hall">
-        Halls
-      </label>
-      <label>
-        <input type="radio" v-model="selectedCategory" value="college">
-        Residential College
-      </label>
-      <label>
-        <input type="radio" v-model="selectedCategory" value="PGP">
-        PGP
-      </label>
-    </div>
-  </div>
-  <div class="wrapper">
-    <div class="card" v-for="lodg in filteredLodging" v-bind:key="lodg.name">
-      <div class="column"> 
-        <router-link
-        v-bind:to="{name:'lodgingDashboard', params: {lodging_name: lodg.name}}">
-        <img v-bind:src="lodg.img" style="width:100%">
-        <h4>{{ lodg.name }}</h4> 
-        </router-link> 
+  <div class="select">
+    <b-jumbotron text-variant="white" class="jumbo">
+      <template slot="header" class="text-center">Select your preferred lodging type:</template>
+      <br/>
+      <div class="test text-center">
+        <div class="filter">
+          <label class="options">
+            <input type="radio" v-model="selectedCategory" value="All">
+            All
+          </label>
+          <label class="options">
+            <input type="radio" v-model="selectedCategory" value="hall">
+            Halls
+          </label>
+          <label class="options">
+            <input type="radio" v-model="selectedCategory" value="college">
+            Residential College
+          </label>
+          <label class="options">
+            <input type="radio" v-model="selectedCategory" value="PGP">
+            PGP
+          </label>
+        </div>
       </div>
+    </b-jumbotron>
+  </div>
+  <div class = "row">
+    <div class = "col-md-4 text-center" v-for="lodg in filteredLodging" v-bind:key="lodg.name">
+      <router-link v-bind:to="{name:'lodgingDashboard', params: {lodging_name: lodg.name}}">
+            <img v-bind:src="lodg.img" style="width:100%">
+            <h4>{{ lodg.name }}</h4>
+          </router-link>
     </div>
   </div>
 </body>
@@ -114,41 +117,17 @@ export default {
 </script>
 
 <style>
-body {
-  background-color: #f1f1f1;
-  font-family: Arial;
+.jumbo {
+  padding-top: 100px;
+  background-color: #EF7C00;
+  width: full;
 }
-/*.wrapper {
-  padding: 30px;
-}*/
-.column {
-  float: left;
-  width: 33.33%;
+.options {
+  padding-right: 80px;
 }
-/*.card {
-  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px,
-    rgba(0, 0, 0, 0.117647) 0px 1px 4px;
-  //width: 33.3%;
-  margin: 12px;
-  transition: 0.15s all ease-in-out;
-  &:hover {
-    transform: scale(1.1);
-  }
-  a {
-    text-decoration: none;
-    //padding: 12px;
-    color: #03a9f4;
-    font-size: 24px;
-    //display: flex;
-    //flex-direction: column;
-    //align-items: center;
-    img {
-      height: 100px;
-    }
-    h4 {
-      font-size: 10px;
-      padding: 4px;
-    }
-  }
-}*/
+
+.row{
+  padding-right:20px;
+  padding-left:20px;
+}
 </style>
