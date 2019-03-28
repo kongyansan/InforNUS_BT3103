@@ -14,6 +14,7 @@
   overflow: hidden;
   position: fixed;
   width: 100vw;
+  z-index: 200;
 }
 
 /* Style the links inside the navigation bar */
