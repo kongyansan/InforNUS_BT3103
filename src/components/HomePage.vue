@@ -130,8 +130,12 @@ export default {
 </script>
 
 <style>
-.designers {
-  background-color: #FFFFFF;
+.carousel {
+  padding-top: 35px;
+}
+
+.designers{
+  background-color:#EFEFEF;
 }
 </style>
 

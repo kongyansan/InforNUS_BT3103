@@ -1,10 +1,24 @@
 <template>
 <body id="searchTable">
-  <input type="text" v-model="search" id="myInput" placeholder="Search Courses">
-  <h4>Categories</h4>
-  <div v-for="option in options" :key="option.text">
-    <input type="radio" v-model="selected" :value="option.text">
-    {{ option.text }}
+  <div class="searchBar">
+    <b-jumbotron text-variant="white" class="jumbo">
+      <template slot="header" class="text-center">Search for available courses:</template>
+      <template slot="lead">More than 100 courses available here.</template>
+      <input type="text" v-model="search" id="myInput" placeholder="Search Courses" class="search">
+      <div>
+        <br>
+        <b-button v-b-toggle.collapse-1 variant="primary">Filter by faculty</b-button>
+        <b-collapse id="collapse-1" class="mt-2">
+          <b-card>
+            <p class="card-text"></p>
+            <div v-for="option in options" :key="option.text" class="filter-options">
+              <input type="radio" v-model="selected" :value="option.text">
+              {{ option.text }}
+            </div>
+          </b-card>
+        </b-collapse>
+      </div>
+    </b-jumbotron>
   </div>
   <table id="myTable">
     <thead>
@@ -28,6 +42,8 @@
         <td>{{ course.starting_salary }}</td>
       </tr>
     </tbody>
+    <br>
+    <br>
   </table>
 </body>
 </template>
@@ -102,4 +118,18 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.searchBar {
+  padding-top: 50px;
+}
+.jumbo {
+  background-color: #EF7C00;
+}
+.search {
+  width: 800px;
+  height: 45px;
+}
+.filter-options {
+  color: black;
+}
+</style>
