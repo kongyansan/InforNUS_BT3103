@@ -1,6 +1,12 @@
 <template>
 <body>
-  <div>
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+    crossorigin="anonymous"
+  >
+  <div class="carousel">
     <b-carousel
       id="carousel-1"
       v-model="slide"
@@ -12,68 +18,121 @@
       @sliding-start="onSlideStart"
       @sliding-end="onSlideEnd"
     >
+      <b-carousel-slide>
+        <h1>Welcome to INFORNUS</h1>
+        <img
+          slot="img"
+          class="d-block img-fluid w-100"
+          width="1024"
+          height="480"
+          src="../assets/homepage.jpg"
+          alt="image slot"
+        >
+      </b-carousel-slide>
+      <b-carousel-slide caption="Courses" text="Choose the course that fits you the most.">
+        <img
+          slot="img"
+          class="d-block img-fluid w-100"
+          width="1024"
+          height="480"
+          src="../assets/homepage.jpg"
+          alt="image slot"
+        >
+      </b-carousel-slide>
       <b-carousel-slide
-      img src = "../assets/raffleshall.jpg"
-        ></b-carousel-slide>
-        <b-carousel-slide
-          caption="First slide"
-          text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-          img-src="https://picsum.photos/1024/480/?image=52"
-        ></b-carousel-slide>
-        <b-carousel-slide
-          caption="First slide"
-          text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-          img-src="https://picsum.photos/1024/480/?image=52"
-        ></b-carousel-slide>
+        caption="Lodging"
+        text="Choose the best on-campus stay for a full NUS experience."
+      >
+        <img
+          slot="img"
+          class="d-block img-fluid w-100"
+          width="1024"
+          height="480"
+          src="../assets/homepage.jpg"
+          alt="image slot"
+        >
+      </b-carousel-slide>
     </b-carousel>
   </div>
-  <div class="jumbotron text-center">
-    <h1>INFORNUS</h1>
-    <p>Your NUS journey starts here</p>
+
+  <div class="information">
+    <div class="title text-center">
+      <br>
+      <br>
+      <h3>Idea behind INFORNUS</h3>
+    </div>
+    <br>
+    <b-container class="bv-example-row">
+      <b-row class="text-center">
+        <b-col>
+          <i class="fas fa-info-circle fa-3x"></i>
+          <br>
+          <h6>provide you with all the information that you might need when you choose NUS</h6>
+        </b-col>
+        <b-col>
+          <i class="fas fa-chart-line fa-3x"></i>
+          <h6>Do the Analytics for you so you can make a more informed choice.</h6>
+        </b-col>
+        <b-col>3 of 3</b-col>
+      </b-row>
+      <br>
+      <br>
+    </b-container>
+  </div>
+
+  <div class="designers">
+    <div class="title text-center">
+      <br>
+      <br>
+      <h3>Brought to you by:</h3>
+      <br>
+    </div>
+    <b-container fluid class>
+      <b-row>
+        <b-col>
+          <b-img thumbnail fluid src="https://picsum.photos/250/250/?image=58" alt="Image 2"></b-img>
+        </b-col>
+        <b-col>
+          <b-img thumbnail fluid src="https://picsum.photos/250/250/?image=58" alt="Image 2"></b-img>
+        </b-col>
+        <b-col>
+          <b-img thumbnail fluid src="https://picsum.photos/250/250/?image=59" alt="Image 3"></b-img>
+        </b-col>
+        <b-col>
+          <b-img thumbnail fluid src="https://picsum.photos/250/250/?image=59" alt="Image 3"></b-img>
+        </b-col>
+      </b-row>
+      <br>
+      <br>
+    </b-container>
   </div>
 </body>
 </template>
 
 <script>
 export default {
-  name: "homepage",
+  name: "hompage",
   data() {
-    return {};
+    return {
+      slide: 0,
+      sliding: null
+    };
+  },
+  methods: {
+    onSlideStart(slide) {
+      this.sliding = true;
+    },
+    onSlideEnd(slide) {
+      this.sliding = false;
+    }
   }
 };
 </script>
 
 <style>
-.jumbotron {
-  padding-top: 100px;
-  background-color: #EF7C00;
+.designers {
+  background-color: #FFFFFF;
 }
 </style>
 
-<script>
-export default {
-  name: "homepage",
-  data() {
-    return {};
-  }
-};
-</script>
 
-<script>
-  export default {
-    data() {
-      return {
-        slide: 0,
-        sliding: null
-      }
-    },
-    methods: {
-      onSlideStart(slide) {
-        this.sliding = true
-      },
-      onSlideEnd(slide) {
-        this.sliding = false
-      }
-    }
-  }
-</script>
