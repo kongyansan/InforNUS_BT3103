@@ -1,21 +1,13 @@
 <template>
-  <body>
-    <div class="jc_selection_pane" style="float:left">
-      <img
-        id="jc_image"
-        src="../assets/jc_image.jpg"
-        @click="DoSomething($event);"
-      />
-    </div>
+<body>
+  <div class="jc_selection_pane" style="float:left">
+    <img id="jc_image" src="../assets/jc_image.jpg" @click="DoSomething($event);">
+  </div>
 
-    <div class="poly_selection_pane" style="float:right">
-      <img
-        id="poly_image"
-        src="../assets/poly_image.jpg"
-        @click="DoSomething($event);"
-      />
-    </div>
-  </body>
+  <div class="poly_selection_pane" style="float:right">
+    <img id="poly_image" src="../assets/poly_image.jpg" @click="DoSomething($event);">
+  </div>
+</body>
 </template>
 
 <script>

@@ -1,24 +1,19 @@
 <template>
 <body>
-  <nav class="topnav" topmargin="0">
+  <b-navbar class="topnav" topmargin="0">
     <router-link to="/">Home</router-link>
     <router-link to="/courseSearch">Course</router-link>
     <router-link to="/lodging">Lodging</router-link>
-  </nav>
+  </b-navbar>
 </body>
 </template>
 
 <style>
-body {
-  margin: 0;
-  top: 0px;
-  padding: 0;
-}
 .topnav {
-  //margin: 100;
   background-color: #003d7c;
   overflow: hidden;
-  //height: 30%;
+  position: fixed;
+  width: 100vw;
 }
 
 /* Style the links inside the navigation bar */
