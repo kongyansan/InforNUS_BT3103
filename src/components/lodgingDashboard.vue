@@ -138,31 +138,21 @@ export default {
         "School of Computing"
       ];
       for (var lodging of this.lodging_info) {
-        //   console.log(lodging["School of Business"])
         if (lodging.lodging_name.toLowerCase() == this.lodging_name) {
           for (var fac of faculties) {
-            // console.log(Number(lodging.fac) )
             ans[fac] = lodging[fac];
-            // if ( fac=="Faculty of Arts and Social Science"){
-            //     test.push([,Number(lodging[fac])])
-            // }
             test.push([fac, lodging[fac]]);
           }
         }
       }
-      //   console.log(test)
       return test;
     },
     getGoodReviews() {
       var ans = {};
       var defaultWords = [];
-      //   console.log( (Object.values(this.lodging_info ) ))
       for (var lodging of this.lodging_info) {
-        //   console.log( (lodging.lodging_name +"wtf" ) )
         if (lodging.lodging_name.toLowerCase() == this.lodging_name) {
-          // console.log( (lodging.good_reviews +"wtf" ) )
           for (var goodcomments of lodging.good_reviews) {
-            //   console.log( goodcomments + "right now")
             if (!(goodcomments in ans)) {
               ans[goodcomments] = 0;
             }
@@ -173,7 +163,6 @@ export default {
       for (var comment of Object.keys(ans)) {
         defaultWords.push({ name: comment, value: ans[comment] });
       }
-
       return defaultWords;
     },
     getBadReviews() {
@@ -203,19 +192,19 @@ export default {
         if (lodging.lodging_name.toLowerCase() == this.lodging_name) {
           test.push({
             id: "Double Room with Air Con",
-            value: lodging.Double_AC
+            value: lodging.Type_Of_Rooms.Double_AC
           });
           test.push({
             id: "Double Room without Air Con",
-            value: lodging.Double_No_AC
+            value: lodging.Type_Of_Rooms.Double_No_AC
           });
           test.push({
             id: "Single Room with Air Con",
-            value: lodging.Single_AC
+            value: lodging.Type_Of_Rooms.Single_AC
           });
           test.push({
             id: "Single Room without Air Con",
-            value: lodging.Single_No_AC
+            value: lodging.Type_Of_Rooms.Single_No_AC
           });
           test.push({ id: "Meal Plan", value: lodging.meal_plan });
         }

@@ -48,7 +48,7 @@
           class="d-block img-fluid w-100"
           width="1024"
           height="480"
-          src="../assets/lodging.jpg"
+          src="../assets/lodging .jpg"
           alt="image slot"
         >
       </b-carousel-slide>
