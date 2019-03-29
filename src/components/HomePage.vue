@@ -35,7 +35,7 @@
           class="d-block img-fluid w-100"
           width="1024"
           height="480"
-          src="../assets/homepage.jpg"
+          src="../assets/course.jpg"
           alt="image slot"
         >
       </b-carousel-slide>
@@ -48,7 +48,7 @@
           class="d-block img-fluid w-100"
           width="1024"
           height="480"
-          src="../assets/homepage.jpg"
+          src="../assets/lodging.jpg"
           alt="image slot"
         >
       </b-carousel-slide>
@@ -134,8 +134,8 @@ export default {
   padding-top: 35px;
 }
 
-.designers{
-  background-color:#EFEFEF;
+.designers {
+  background-color: #EFEFEF;
 }
 </style>
 
