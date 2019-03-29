@@ -1,89 +1,93 @@
 <template>
-  <div id="app">
-    <section class="container">
-      <h1>Name of College</h1>
-      <div class="columns">
-        <div class="column">
-          <h3>Faculty Breakdown</h3>
-          <pie-chart :data="this.getFacultyBreakdown"></pie-chart>
-        </div>
-        <div class="column">
-          <h3>Average Travelling Time</h3>
-
-          <bar-chart :data="this.getTravellingTime" label="Value"></bar-chart>
-        </div>
-      </div>
-      <div class="columns">
-        <div class="column">
-          <h3>Good Review</h3>
-          <div id="lodging_dashboard">
-            <wordcloud
-              :data="this.getGoodReviews"
-              nameKey="name"
-              valueKey="value"
-              :color="myColors"
-              :showTooltip="false"
-            ></wordcloud>
-          </div>
-        </div>
-        <div class="column">
-          <h3>Bad Review</h3>
-          <div id="lodging_dashboard">
-            <wordcloud
-              :data="this.getBadReviews"
-              nameKey="name"
-              valueKey="value"
-              :color="myColors"
-              :showTooltip="false"
-            ></wordcloud>
-          </div>
-        </div>
-
-        <div class="column">
-          <h3>Fees and Room type</h3>
-          <table style="width:100%">
-            <tr>
-              <th>Items to be paid</th>
-              <th>Price</th>
-            </tr>
-            <tr v-for="row in this.getLodgingInfo2" v-bind:key="row.id">
-              <td>{{row.id}}</td>
-              <td>{{row.value}}</td>
-            </tr>
-          </table>
-        </div>
-
-        <!-- <div class="column">
-    <div style = "margin-left: 620px;"> 
-    <h4>Lodging_Info</h4>
-    <table id="LodgeTable">
-      <thead>
-        <tr>
-          <th style="width:25%;">Lodging Types</th>
-          <th style="width:25%;">Compulsory Meal Plan (Yes/No) </th>
-          <th style="width:25%;">Average Price</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr v-for="(item, item_index) in itemList" :key="item.name">
-            <td>{{ item.name }}</td>
-            <td v-for="(day, day_index) in days" @click="alert(item_index, day_index)">Click</td>
-          </tr>
-        <tr v-for="(value,key) in this.jobInfo" :key="key">
-          <td>{{ key }}</td>
-          <td>{{ value }}</td>
-        </tr>
-      </tbody>
-    </table>
-        </div>-->
-        <!-- <div class="column">
-          <h3>Downloadable Line Chart</h3>
-          <line-chart :data="chartData" :download="true"></line-chart>
-        </div>-->
-      </div>
-    </section>
+<body>
+  <div class="header text-center">
+    <h1>{{this.lodging_name}}</h1>
   </div>
+
+  <div class="containers">
+    <div class="title-header">
+      <h3>Faculty related</h3>
+    </div>
+    <br>
+    <b-row>
+      <b-col class="text-center">
+        <h4>Faculty Breakdown</h4>
+        <pie-chart :data="this.getFacultyBreakdown"></pie-chart>
+      </b-col>
+      <b-col class="text-center">
+        <h4>Average Travelling Time</h4>
+        <bar-chart :data="this.getTravellingTime" label="Value"></bar-chart>
+      </b-col>
+    </b-row>
+    <br>
+  </div>
+
+  <div class="containers">
+    <div class="title-header">
+      <h3>Cost</h3>
+    </div>
+    <br>
+    <b-row>
+      <b-col class="text-center">
+        <h4>Fees and Room type</h4>
+      </b-col>
+    </b-row>
+    <br>
+    <b-row>
+      <b-col></b-col>
+      <b-col cols="8">
+        <table style="width:100%" class="price-table">
+          <tr>
+            <th>Items to be paid</th>
+            <th>Price</th>
+          </tr>
+          <tr v-for="row in this.getLodgingInfo2" v-bind:key="row.id">
+            <td>{{row.id}}</td>
+            <td>{{row.value}}</td>
+          </tr>
+        </table>
+      </b-col>
+      <b-col></b-col>
+    </b-row>
+    <br>
+    <br>
+  </div>
+
+  <div class="containers">
+    <div class="title-header">
+      <h3>Reviews</h3>
+    </div>
+    <br>
+    <b-row class="review-row">
+      <b-col class="text-center">
+        <h4>Good Review</h4>
+        <div class="lodging_dashboard">
+          <wordcloud
+            :data="this.getGoodReviews"
+            nameKey="name"
+            valueKey="value"
+            :color="myColors"
+            :showTooltip="false"
+          ></wordcloud>
+        </div>
+      </b-col>
+      <b-col class="text-center">
+        <h4>Bad Review</h4>
+        <div class="lodging_dashboard">
+          <wordcloud
+            :data="this.getBadReviews"
+            nameKey="name"
+            valueKey="value"
+            :color="myColors"
+            :showTooltip="false"
+          ></wordcloud>
+        </div>
+      </b-col>
+    </b-row>
+  </div>
+</body>
 </template>
+
 <script>
 import Vue from "vue";
 import VueChartkick from "vue-chartkick";
@@ -222,13 +226,34 @@ export default {
 };
 </script>
 
-<style scoped>
-h1 {
-  text-align: center;
-  margin-top: 20px;
-  margin-bottom: 30px;
+<style>
+.header {
+  padding-top: 72px;
+  padding-bottom: 10px;
+  background-color: #EF7C00;
 }
-.container {
-  padding: 20px;
+
+.title-header {
+  background-color: #D3D3D3;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: full;
+}
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even) {
+  background-color: #E6E6E6;
+}
+
+.lodging_dashboard {
+  border: 1px solid #dddddd;
+}
+
+.review-row {
+  padding: 7px;
 }
 </style>

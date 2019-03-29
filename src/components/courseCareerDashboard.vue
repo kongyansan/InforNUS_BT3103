@@ -43,7 +43,7 @@
             <td>{{ selectedCourse.second_class }}</td>
           </tr>
         </tbody>
-      </table> 
+      </table>
 
       <router-link
         v-bind:to="{name:'courseDashboard', params: {course_name: selectedCourse.course_name}}"

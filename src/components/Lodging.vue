@@ -3,7 +3,7 @@
   <div class="select">
     <b-jumbotron text-variant="white" class="jumbo">
       <template slot="header" class="text-center">Select your preferred lodging type:</template>
-      <br/>
+      <br>
       <div class="test text-center">
         <div class="filter">
           <label class="options">
@@ -26,12 +26,12 @@
       </div>
     </b-jumbotron>
   </div>
-  <div class = "row">
-    <div class = "col-md-4 text-center" v-for="lodg in filteredLodging" v-bind:key="lodg.name">
+  <div class="row">
+    <div class="col-md-3 text-center" v-for="lodg in filteredLodging" v-bind:key="lodg.name">
       <router-link v-bind:to="{name:'lodgingDashboard', params: {lodging_name: lodg.name}}">
-            <img v-bind:src="lodg.img" style="width:100%">
-            <h4>{{ lodg.name }}</h4>
-          </router-link>
+        <img v-bind:src="lodg.img" style="width:100%">
+        <h4>{{ lodg.name }}</h4>
+      </router-link>
     </div>
   </div>
 </body>
@@ -126,8 +126,8 @@ export default {
   padding-right: 80px;
 }
 
-.row{
-  padding-right:20px;
-  padding-left:20px;
+.row {
+  padding-right: 20px;
+  padding-left: 20px;
 }
 </style>
