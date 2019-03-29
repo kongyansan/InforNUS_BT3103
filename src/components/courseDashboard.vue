@@ -1,36 +1,76 @@
 <template>
-<body>
+<body class="dashboardbody">
+  <div>
+    <b-container fluid>
+      <b-row>
+        <b-col sm="4">
+          <h1>{{selectedCourse.course_name}}</h1>
+        </b-col>
+        <b-col sm="5">
+          <router-link
+            v-bind:to="{name:'courseCareerDashboard', params: {course_name: selectedCourse.course_name}}"
+          >
+            <b-button variant="outline-primary">Careers</b-button>
+          </router-link>
+        </b-col>
+      </b-row>
+    </b-container>
+  </div>
+
+  <b-container fluid>
+    <b-row>
+      <b-col sm="3">
+        <h2>School Fees:</h2>
+        <h3>{{selectedCourse.school_fees}}</h3>
+      </b-col>
+      <b-col sm="9">
+        <h2>Description</h2>
+        <p>
+          Today's businesses run on data. From web analytics and accounting to market research and demographics, our information-centric world generates countless terabytes of data year after year. Data analysts play the increasingly important role of making sense of all that data.
+          As a Business Analytics student, you will gain a solid foundation in the statistical and analytical methods that make up the backbone of data science. You'll learn to work with spreadsheets, aggregate data, evaluate statistical significance, and determine statistical trends.
+        </p>
+      </b-col>
+    </b-row>
+
+    <b-row fluid>
+      <b-col>
+        <h2>Cohort Demographic</h2>
+        <pie-chart :data="this.distributionInfo"></pie-chart>
+      </b-col>
+      <b-col>
+        <table class="Grade Profile" style="width:49%;">
+          <thead>
+            <tr>
+              <th>Qualification</th>
+              <th>Score (10th/90th Percentile)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(value,key) in this.gradeProfile" :key="key">
+              <td>{{key}}</td>
+              <td>{{value}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </b-col>
+    </b-row>
+  </b-container>
+
+  <!--
+  <div class = "container-header">
+    <h1>{{selectedCourse.course_name}}</h1>
+    <router-link v-bind:to="{name:'courseCareerDashboard', params: {course_name: selectedCourse.course_name}}">
+    CAREER 
+  </router-link> 
+    <div>
+  </div>
+  
+  </div>
   <div class="container-top">
     <div class="square schoolFees">
       <h2>School Fees:</h2>
       <h3>{{selectedCourse.school_fees}}</h3>
     </div>
-
-    <div class="square difficultyRating">
-      <h2>Difficulty Rating:</h2>
-      <h3>{{selectedCourse.difficulty_rating}}</h3>
-    </div>
-
-    <div class="square courseRating">
-      <h2>Course Rating:</h2>
-      <h3>{{selectedCourse.course_rating}}</h3>
-    </div>
-  </div>
-
-  <div class="container-mid">
-    <div class="info text">
-      <h2>{{selectedCourse.course_name}}</h2>
-      <p>
-        Today's businesses run on data. From web analytics and accounting to market research and demographics, our information-centric world generates countless terabytes of data year after year. Data analysts play the increasingly important role of making sense of all that data.
-        As a Business Analytics student, you will gain a solid foundation in the statistical and analytical methods that make up the backbone of data science. You'll learn to work with spreadsheets, aggregate data, evaluate statistical significance, and determine statistical trends.
-      </p>
-    </div>
-    <div class="info distribution">
-      <h2>Cohort Demographic</h2>
-      <pie-chart :data="this.distributionInfo"></pie-chart>
-    </div>
-  </div>
-
   <table class="Grade Profile" style="width:49%;">
     <thead>
       <tr>
@@ -46,10 +86,35 @@
     </tbody>
   </table> 
 
-  <router-link v-bind:to="{name:'courseCareerDashboard', params: {course_name: selectedCourse.course_name}}">
-    CAREER 
-  </router-link> 
+    <div class="square difficultyRating">
+      <h2>Difficulty Rating:</h2>
+      <h3>{{selectedCourse.difficulty_rating}}</h3>
+    </div>
 
+    <div class="square courseRating">
+      <h2>Course Rating:</h2>
+      <h3>{{selectedCourse.course_rating}}</h3>
+    </div>
+
+  </div>
+  
+
+  <div class="container-mid">
+    <div class="info text">
+      <h2>Description</h2>
+      <p>
+        Today's businesses run on data. From web analytics and accounting to market research and demographics, our information-centric world generates countless terabytes of data year after year. Data analysts play the increasingly important role of making sense of all that data.
+        As a Business Analytics student, you will gain a solid foundation in the statistical and analytical methods that make up the backbone of data science. You'll learn to work with spreadsheets, aggregate data, evaluate statistical significance, and determine statistical trends.
+      </p>
+    </div>
+    <div class="info distribution">
+      <h2>Cohort Demographic</h2>
+      <pie-chart :data="this.distributionInfo"></pie-chart>
+    </div>
+  </div>
+
+
+  -->
 </body>
 </template> 
 
@@ -64,11 +129,11 @@ export default {
   name: "courseDashboard",
   firebase: {
     courses: db.ref("course_admin_info/data")
-  }, 
+  },
 
-  created(){ 
-    this.course_name = this.$route.params.course_name; 
-  }, 
+  created() {
+    this.course_name = this.$route.params.course_name;
+  },
   computed: {
     selectedCourse: function() {
       // filter to match the parameter containing the selected course
@@ -163,6 +228,10 @@ tr:nth-child(even) {
   margin-top: 10px;
   margin-bottom: 10px;
   margin-left: 5px;
+}
+
+.dashboardbody {
+  padding-top: 70px;
 }
 </style>
 

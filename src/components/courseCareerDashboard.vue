@@ -1,55 +1,75 @@
 <template>
-  <div id="app">
-    <div style="width: 600px; float: left;">
-      <h4>Industry Breakdown</h4>
-      <pie-chart :data="this.industryInfo"></pie-chart>
-
-      <h4>Starting Pay Comparison</h4>
-      <line-chart :data="this.salaryInfo"></line-chart>
-    </div>
-
-    <div style="margin-left: 620px;">
-      <h4>Common Jobs</h4>
-      <table id="jobTable">
-        <thead>
-          <tr>
-            <th style="width:25%;">Job Title</th>
-            <th style="width:25%;">Pay (per month)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(value,key) in this.jobInfo" :key="key">
-            <td>{{ key }}</td>
-            <td>{{ value }}</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h4>Distribution of Honors</h4>
-      <table id="graduateTable">
-        <thead>
-          <tr>
-            <th style="width:25%;">Honors</th>
-            <th style="width:25%;">Percentage(%)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Highest Distinction</td>
-            <td>{{ selectedCourse.first_class }}</td>
-          </tr>
-          <tr>
-            <td>Distinction</td>
-            <td>{{ selectedCourse.second_class }}</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <router-link
-        v-bind:to="{name:'courseDashboard', params: {course_name: selectedCourse.course_name}}"
-      >Admin Info</router-link>
-    </div>
+<body class="header">
+  <div>
+    <b-container fluid>
+      <b-row>
+        <b-col sm="4">
+          <h1>{{selectedCourse.course_name}}</h1>
+        </b-col>
+        <b-col sm="5">
+          <router-link
+            v-bind:to="{name:'courseDashboard', params: {course_name: selectedCourse.course_name}}"
+          >
+            <b-button variant="outline-primary">Admin Info</b-button>
+          </router-link>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
+
+  <b-container fluid>
+    <b-row>
+      <b-col md="4">
+        <h4>Industry Breakdown</h4>
+        <pie-chart :data="this.industryInfo"></pie-chart>
+      </b-col>
+      <b-col md="7">
+        <h4>Starting Pay Comparison</h4>
+        <line-chart :data="this.salaryInfo"></line-chart>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
+        <h4>Common Jobs</h4>
+        <table id="jobTable">
+          <thead>
+            <tr>
+              <th style="width:25%;">Job Title</th>
+              <th style="width:25%;">Pay (per month)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(value,key) in this.jobInfo" :key="key">
+              <td>{{ key }}</td>
+              <td>{{ value }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </b-col>
+      <b-col>
+        <h4>Distribution of Honors</h4>
+        <table id="graduateTable">
+          <thead>
+            <tr>
+              <th style="width:25%;">Honors</th>
+              <th style="width:25%;">Percentage(%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Highest Distinction</td>
+              <td>{{ selectedCourse.first_class }}</td>
+            </tr>
+            <tr>
+              <td>Distinction</td>
+              <td>{{ selectedCourse.second_class }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </b-col>
+    </b-row>
+  </b-container>
+</body>
 </template>
 
 <script>
@@ -70,7 +90,7 @@ export default {
     selectedCourse: function() {
       // filter to match the parameter containing the selected course
       let ans = this.course_info.filter(
-        course => course.course_name == "Business Analytics"
+        course => course.course_name == this.course_name
       );
       console.log(ans[0]);
 
@@ -206,4 +226,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.header {
+  padding-top: 70px;
+}
+.container-top {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+</style>
