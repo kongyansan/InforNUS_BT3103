@@ -16,7 +16,7 @@
       </b-col>
       <b-col class="text-center">
         <h4>Average Travelling Time</h4>
-        <bar-chart :data="this.getTravellingTime" label="Value"></bar-chart>
+        <vue-chart type="horizontalBar" :data="this.fillData" :bind="true"></vue-chart>
       </b-col>
     </b-row>
     <br>
@@ -95,7 +95,9 @@ import Chart from "chart.js";
 import db from "@/firebase.js";
 // https://github.com/feifang/vue-wordcloud
 import wordcloud from "vue-wordcloud";
+import VueChart from "vue-chart";
 
+Vue.use(VueChart);
 Vue.use(VueChartkick, { adapter: Chart });
 
 export default {
@@ -105,7 +107,8 @@ export default {
     lodging_info: db.ref("lodging_info/data")
   },
   components: {
-    wordcloud
+    wordcloud,
+    VueChart
   },
 
   created() {
@@ -113,6 +116,7 @@ export default {
   },
   data() {
     return {
+      // colors for wordcloud
       myColors: ["#1f77b4", "#629fc9", "#94bedb", "#c9e0ef"]
     };
   },
@@ -210,6 +214,49 @@ export default {
         }
       }
       return test;
+    },
+    fillData() {
+      var info = [];
+      var travellingLabels = [
+        "School of Business",
+        "Engineering",
+        "Faculty of Science",
+        "Faculty of Arts and Social Sciences",
+        "School of Computing"
+      ];
+      for (var lodging of this.lodging_info) {
+        if (lodging.lodging_name.toLowerCase() === this.lodging_name) {
+          for (var fac of travellingLabels) {
+            // console.log('added')
+            info.push(lodging[fac]);
+          }
+        }
+      }
+      var datacollection = {
+        labels: travellingLabels,
+        datasets: [
+          {
+            label: "Average Travelling Time",
+            backgroundColor: [
+              "rgba(54, 162, 235, 0.6)",
+              "rgba(255, 206, 86, 0.6)",
+              "rgba(75, 192, 192, 0.6)",
+              "rgba(153, 102, 255, 0.6)",
+              "rgba(255, 159, 64, 0.6)"
+            ],
+            borderColor: [
+              "rgba(54, 162, 235, 0.6)",
+              "rgba(255, 206, 86, 0.6)",
+              "rgba(75, 192, 192, 0.6)",
+              "rgba(153, 102, 255, 0.6)",
+              "rgba(255, 159, 64, 0.6)"
+            ],
+            borderWidth: 1,
+            data: info
+          }
+        ]
+      };
+      return datacollection;
     }
   }
 };

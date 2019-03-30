@@ -1,5 +1,5 @@
 {
-  "name": "infornus-bt3103-first-commit",
+  "name": "infornus-bt3103",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,6 +13,7 @@
     "chart.js": "2.8.0",
     "firebase": "5.9.0",
     "vue": "^2.5.22",
+    "vue-chart": "2.0.0",
     "vue-chartkick": "0.5.0",
     "vue-router": "3.0.2",
     "vue-wordcloud": "1.1.1",
