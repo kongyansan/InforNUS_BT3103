@@ -7,22 +7,14 @@
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
-import HomePage from "./components/HomePage";
 import NavBar from "./components/NavBar";
-import Lodging from "./components/Lodging";
-import courseCareerDashboard from "./components/courseCareerDashboard";
-import lodgingDashboard from "./components/lodgingDashboard";
-import courseDashboard from "./components/courseDashboard";
+
 
 export default {
   name: "App",
   components: {
     NavBar,
-    Lodging,
-    courseCareerDashboard,
-    lodgingDashboard,
-    courseDashboard
+
   }
 };
 </script>
