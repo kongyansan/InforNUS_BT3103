@@ -18,6 +18,20 @@
           </b-card>
         </b-collapse>
       </div>
+
+      <div>
+        <br>
+        <b-button v-b-toggle.collapse-1 variant="primary">Sort by Column</b-button>
+        <b-collapse id="collapse-1" class="mt-2">
+          <b-card>
+            <p class="card-text"></p>
+            <div v-for="column in columns" :key="column.text" class="column-options">
+              <input type="radio" v-model="selectedPara" :value="column.text">
+              {{ column.text }}
+            </div>
+          </b-card>
+        </b-collapse>
+      </div>
     </b-jumbotron>
   </div>
   <table id="myTable">
@@ -62,6 +76,7 @@ export default {
     return {
       search: "",
       selected: "all",
+      selectedPara: "starting_salary",
       options: [
         { text: "All Faculties", value: "all" },
         { text: "School of Business", value: "Business" },
@@ -75,6 +90,12 @@ export default {
         { text: "Engineering", value: "Engineering" },
         { text: "Law", value: "Law" },
         { text: "Others", value: "Others" }
+      ],
+
+      columns: [
+        { text: "Highest Distinction", value: "first_class" },
+        { text: "Distinction", value: "second_class" },
+        { text: "Starting Salary", value: "starting_salary" }
       ]
     };
   },
@@ -93,8 +114,21 @@ export default {
       else return "";
     },
 
+    columnPara: function() {
+      if (this.selectedPara === "Highest Distinction") return "first_class";
+      else if (this.selectedPara === "Distinction") return "second_class";
+      else return "starting_salary";
+    },
+
     selectedCourses: function() {
-      return this.courses.filter(course => this.searchFunction(course));
+      let list = this.courses.filter(course => this.searchFunction(course));
+      let columnPara = this.columnPara;
+      list.sort(function(a, b) {
+        console.log(columnPara);
+        console.log(a[columnPara]);
+        return b[columnPara] - a[columnPara];
+      });
+      return list;
     }
   },
 
@@ -131,5 +165,9 @@ export default {
 }
 .filter-options {
   color: black;
+} 
+
+.column-options{
+  color:  black; 
 }
 </style>
