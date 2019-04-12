@@ -88,8 +88,7 @@ export default {
         { text: "Arts & Social Sciences", value: "Social Sciences" },
         { text: "Science", value: "Science" },
         { text: "Engineering", value: "Engineering" },
-        { text: "Law", value: "Law" },
-        { text: "Others", value: "Others" }
+        { text: "Law", value: "Law" }
       ],
 
       columns: [

@@ -7,6 +7,7 @@ import courseCareerDashboard from "@/components/courseCareerDashboard";
 import courseDashboard from "@/components/courseDashboard";
 import courseSearch from "@/components/courseSearch";
 import lodgingDashboard from "@/components/lodgingDashboard";
+import JCrecommendation from "@/components/JCrecommendation";
 
 Vue.use(Router);
 
@@ -53,6 +54,11 @@ export default new Router({
       path: "/lodgingDashboard/:lodging_name",
       name: "lodgingDashboard",
       component: lodgingDashboard
+    },
+    {
+      path: "/JCrecommendation",
+      name: "JCrecommendation",
+      component: JCrecommendation
     }
   ]
 });

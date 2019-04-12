@@ -1,0 +1,175 @@
+<template>
+<body id="searchTable">
+  <div class="searchBar">
+    <b-jumbotron text-variant="white" class="jumbo">
+      <template slot="header" class="text-center">Enter your rank points:</template>
+      <template slot="lead">More than 100 courses available here.</template>
+      <input type="text" v-model="search" id="myInput" placeholder="Enter your rank points" class="search">
+      <div>
+        <br>
+        <b-button v-b-toggle.collapse-1 variant="primary">Filter by faculty</b-button>
+        <b-collapse id="collapse-1" class="mt-2">
+          <b-card>
+            <p class="card-text"></p>
+            <div v-for="option in options" :key="option.text" class="filter-options">
+              <input type="radio" v-model="selected" :value="option.text">
+              {{ option.text }}
+            </div>
+          </b-card>
+        </b-collapse>
+      </div>
+
+      <div>
+        <br>
+        <b-button v-b-toggle.collapse-1 variant="primary">Sort by Column</b-button>
+        <b-collapse id="collapse-1" class="mt-2">
+          <b-card>
+            <p class="card-text"></p>
+            <div v-for="column in columns" :key="column.text" class="column-options">
+              <input type="radio" v-model="selectedPara" :value="column.text">
+              {{ column.text }}
+            </div>
+          </b-card>
+        </b-collapse>
+      </div>
+    </b-jumbotron>
+  </div>
+  <table id="myTable">
+    <thead>
+      <tr>
+        <th style="width:20%;">Course</th>
+        <th style="width:20%;">Faculty</th>
+        <th style="width:20%;">10th Percentile (Rank Points)</th>
+        <th style="width:20%;">90th Percentile (Rank Points)</th>
+        <th style="width:20%;">Starting Salary ($ per month)</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr v-for="(course, idx) in selectedCourses" :key="idx">
+        <router-link
+          v-bind:to="{name:'courseDashboard', params: {course_name: course.course_name}}"
+        >{{ course.course_name }}</router-link>
+        <td>{{ course.home_faculty }}</td>
+        <td>{{ course.rank_point_10 }}</td>
+        <td>{{ course.rank_point_90 }}</td>
+        <td>{{ course.starting_salary }}</td>
+      </tr>
+    </tbody>
+    <br>
+    <br>
+  </table>
+</body>
+</template>
+<script>
+import db from "../firebase.js";
+
+export default {
+  name: "courseSearch",
+  firebase: function() {
+    return {
+      courses: db.ref("course_admin_info/data")
+    };
+  },
+  data() {
+    return {
+      search: 80,
+      selected: "all",
+      selectedPara: "starting_salary",
+      options: [
+        { text: "All Faculties", value: "all" },
+        { text: "School of Business", value: "Business" },
+        { text: "School of Computing", value: "Computing" },
+        {
+          text: "School of Design and Environment",
+          value: "design and environment"
+        },
+        { text: "Arts & Social Sciences", value: "Social Sciences" },
+        { text: "Science", value: "Science" },
+        { text: "Engineering", value: "Engineering" },
+        { text: "Law", value: "Law" }
+      ],
+
+      columns: [
+        { text: "Rank Point", value: "rank_point_10" },
+        { text: "Starting Salary", value: "starting_salary" }
+      ]
+    };
+  },
+  computed: {
+    category: function() {
+      if (this.selected === "School of Business") return "School of Business";
+      else if (this.selected === "School of Computing")
+        return "School of Computing";
+      else if (this.selected === "School of Design and Environment")
+        return "School of Design and Enviornment";
+      else if (this.selected === "Arts & Social Sciences")
+        return "Faculty of Arts and Social Sciences";
+      else if (this.selected === "Science") return "Faculty of Science";
+      else if (this.selected === "Law") return "Law Faculty";
+      else if (this.selected === "Engineering") return "Engineering";
+      else return "";
+    },
+
+    columnPara: function() {
+      if (this.selectedPara === "Rank Point") return "rank_point_10"; 
+      else return "starting_salary";
+    },
+
+    selectedCourses: function() { 
+
+      let goal = this.search
+      console.log(goal); 
+      console.log(this.courses)
+
+       // filter values which are greater than the search input 
+
+       let list = this.courses.filter(function(x){ 
+         return x.rank_point_10 >= goal; 
+       }); 
+
+      console.log(list)
+
+      let columnPara = this.columnPara;
+      list.sort(function(a, b) {  
+        return b[columnPara] - a[columnPara];
+      }); 
+
+      list = list.filter(x => this.searchFunction(x)); 
+      return list;
+    }
+  },
+
+  methods: {
+    searchFunction: function(course) {
+    
+ let catMatch =
+        this.category == ""
+          ? true
+          : course.home_faculty.toLowerCase() == this.category.toLowerCase(); 
+
+      return catMatch;
+    }
+  }
+};
+</script>
+
+<style>
+.searchBar {
+  padding-top: 50px;
+}
+.jumbo {
+  background-color: #EF7C00;
+}
+.search {
+  width: 800px;
+  height: 45px;
+}
+.filter-options {
+  color: black;
+} 
+
+.column-options{
+  color:  black; 
+}
+</style>
