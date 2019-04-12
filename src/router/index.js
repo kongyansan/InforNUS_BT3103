@@ -25,7 +25,7 @@ export default new Router({
     },
 
     {
-      path: "/courseSelectionPane",
+      path: "/courseSelectionpane",
       name: "courseSelection",
       component: courseSelectionpane
     },
@@ -39,11 +39,11 @@ export default new Router({
       name: "courseCareerDashboard",
       component: courseCareerDashboard
     },
-    {
+    /*{
       path: "/courseSelection",
       name: "courseSelection",
       component: courseSelectionpane
-    },
+    },*/
     {
       path: "/courseSearch",
       name: "courseSearch",

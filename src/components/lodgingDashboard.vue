@@ -5,73 +5,27 @@
   </div>
 
   <div class="containers">
-    <div class="title-header">
-      <h3>Faculty related</h3>
-    </div>
-    <br>
-    <b-row>
-      <b-col class="text-center">
-        <h4>Faculty Breakdown</h4>
-        <pie-chart :data="this.getFacultyBreakdown"></pie-chart>
-      </b-col>
-      <b-col class="text-center">
+    <b-row class="toprow" height="50%">
+      <b-col class="element text-center">
         <h4>Average Travelling Time</h4>
         <vue-chart type="horizontalBar" :data="this.fillData" :bind="true"></vue-chart>
       </b-col>
-    </b-row>
-    <br>
-  </div>
-
-  <div class="containers">
-    <div class="title-header">
-      <h3>Cost</h3>
-    </div>
-    <br>
-    <b-row>
-      <b-col class="text-center">
-        <h4>Fees and Room type</h4>
-      </b-col>
-    </b-row>
-    <br>
-    <b-row>
-      <b-col></b-col>
-      <b-col cols="8">
-        <table style="width:100%" class="price-table">
-          <tr>
-            <th>Items to be paid</th>
-            <th>Price</th>
-          </tr>
-          <tr v-for="row in this.getLodgingInfo2" v-bind:key="row.id">
-            <td>{{row.id}}</td>
-            <td>{{row.value}}</td>
-          </tr>
-        </table>
-      </b-col>
-      <b-col></b-col>
-    </b-row>
-    <br>
-    <br>
-  </div>
-
-  <div class="containers">
-    <div class="title-header">
-      <h3>Reviews</h3>
-    </div>
-    <br>
-    <b-row class="review-row">
-      <b-col class="text-center">
+      <b-col class="element text-center">
         <h4>Good Review</h4>
-        <div class="lodging_dashboard">
+        <div class="element2 lodging_dashboard">
           <wordcloud
             :data="this.getGoodReviews"
             nameKey="name"
             valueKey="value"
             :color="myColors"
             :showTooltip="false"
+            :rotate="{from: 0, to: 0, numOfOrientation: 1 }"
+            :margin="{top: 0, right: 15, bottom: 15, left: 15 }"
+            style="height:195px"
           ></wordcloud>
         </div>
       </b-col>
-      <b-col class="text-center">
+      <b-col class="element text-center">
         <h4>Bad Review</h4>
         <div class="lodging_dashboard">
           <wordcloud
@@ -80,6 +34,8 @@
             valueKey="value"
             :color="myColors"
             :showTooltip="false"
+            :rotate="{from: 0, to: 0, numOfOrientation: 1 }"
+            style="height:195px"
           ></wordcloud>
         </div>
       </b-col>
@@ -269,12 +225,6 @@ export default {
   background-color: #EF7C00;
 }
 
-.title-header {
-  background-color: #D3D3D3;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  width: full;
-}
 td,
 th {
   border: 1px solid #dddddd;
@@ -284,12 +234,11 @@ th {
 tr:nth-child(even) {
   background-color: #E6E6E6;
 }
-
 .lodging_dashboard {
-  border: 1px solid #dddddd;
+  padding-top: 0px;
 }
-
-.review-row {
-  padding: 7px;
+.element {
+  border-style: solid;
+  height: 50%;
 }
 </style>
