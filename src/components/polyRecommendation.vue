@@ -142,10 +142,10 @@ export default {
 
       let list = this.courses.filter(function(x) {
         return x.diploma_course == goal;
-      });
-
+      }); 
+      
+   
       list = list[0].uni_course;
-      console.log(list);
 
       //get the courses with gpa lower than input gpa
       list = list.filter(x => x.gpa_10 <= this.gpa_input);
