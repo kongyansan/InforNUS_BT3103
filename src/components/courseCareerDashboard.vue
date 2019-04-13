@@ -1,6 +1,60 @@
 <template>
-<body class="header">
+<body>
+  <div class = "header text-center">
+    <h1>{{this.course_name}}
+      <router-link
+            v-bind:to="{name:'courseDashboard', params: {course_name: selectedCourse.course_name}}"
+          >
+            <b-button variant="outline-primary">Admin Info</b-button>
+          </router-link>
+    </h1>
+  </div> 
+  <br/>
   <div>
+    <b-card-group deck>
+        <b-card border-variant="info" header="Industry Breakdown" align="center">
+          <b-card-text>
+            <pie-chart :data="this.industryInfo"></pie-chart>
+          </b-card-text>
+        </b-card>
+        <b-card border-variant="info" header="Starting Pay Comparison" align="center">
+          <b-card-text>
+            <line-chart :data="this.salaryInfo"></line-chart>
+          </b-card-text>
+        </b-card>
+      </b-card-group>
+  </div>
+  <br/>
+  <div>
+    <b-card-group deck>
+        <b-card border-variant="info" header="Common Jobs" align="center">
+          <b-card-text>
+            <table id="jobTable">
+            <thead>
+              <tr>
+                <th style="width:25%;">Job Title</th>
+                <th style="width:25%;">Pay (per month)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(value,key) in this.jobInfo" :key="key">
+                <td>{{ key }}</td>
+                <td>{{ value }}</td>
+              </tr>
+            </tbody>
+        </table>
+          </b-card-text>
+        </b-card>
+        <b-card border-variant="info" header="Starting Pay Comparison" align="center">
+          <b-card-text>
+            <line-chart :data="this.salaryInfo"></line-chart>
+          </b-card-text>
+        </b-card>
+      </b-card-group>
+  </div>
+
+
+<!--<div>
     <b-container fluid>
       <b-row>
         <b-col sm="4">
@@ -68,7 +122,7 @@
         </table>
       </b-col>
     </b-row>
-  </b-container>
+  </b-container>-->
 </body>
 </template>
 
@@ -228,11 +282,23 @@ export default {
 
 <style>
 .header {
-  padding-top: 70px;
+  padding-top: 75px;
 }
 .container-top {
   margin-top: 10px;
   display: flex;
   justify-content: space-between;
+}
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even) {
+  background-color: #E6E6E6;
+}
+.lodging_dashboard {
+  padding-top: 0px;
 }
 </style>

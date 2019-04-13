@@ -4,8 +4,30 @@
     <b-jumbotron text-variant="white" class="jumbo">
       <template slot="header" class="text-center">Search for available courses:</template>
       <template slot="lead">More than 100 courses available here.</template>
-      <input type="text" v-model="search" id="myInput" placeholder="Search Courses" class="search">
-      <div>
+      <div class ="course_search">
+        <input type="text" v-model="search" id="myInput" placeholder="Search Courses" class="search">
+        <b-button v-b-toggle.collapse-1 variant="primary">Filter by faculty</b-button>
+        <b-collapse id="collapse-1" class="mt-2">
+          <b-card>
+            <p class="card-text"></p>
+            <div v-for="option in options" :key="option.text" class="filter-options">
+              <input type="radio" v-model="selected" :value="option.text">
+              {{ option.text }}
+            </div>
+          </b-card>
+        </b-collapse>
+        <b-button v-b-toggle.collapse-1 variant="primary">Sort by Column</b-button>
+        <b-collapse id="collapse-1" class="mt-2">
+          <b-card>
+            <p class="card-text"></p>
+            <div v-for="column in columns" :key="column.text" class="column-options">
+              <input type="radio" v-model="selectedPara" :value="column.text">
+              {{ column.text }}
+            </div>
+          </b-card>
+        </b-collapse>
+      </div>
+      <!--<div>
         <br>
         <b-button v-b-toggle.collapse-1 variant="primary">Filter by faculty</b-button>
         <b-collapse id="collapse-1" class="mt-2">
@@ -17,6 +39,7 @@
             </div>
           </b-card>
         </b-collapse>
+        
       </div>
 
       <div>
@@ -31,7 +54,7 @@
             </div>
           </b-card>
         </b-collapse>
-      </div>
+      </div>-->
     </b-jumbotron>
   </div>
   <table id="myTable">
@@ -168,5 +191,8 @@ export default {
 
 .column-options{
   color:  black; 
+}
+.courseSearch{
+  display:inline-block;
 }
 </style>

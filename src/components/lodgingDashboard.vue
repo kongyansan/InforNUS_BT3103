@@ -3,16 +3,15 @@
   <div class="header text-center">
     <h1>{{this.lodging_name}}</h1>
   </div>
-
-  <div class="containers">
-    <b-row class="toprow" height="50%">
-      <b-col class="element text-center">
-        <h4>Average Travelling Time</h4>
-        <vue-chart type="horizontalBar" :data="this.fillData" :bind="true"></vue-chart>
-      </b-col>
-      <b-col class="element text-center">
-        <h4>Good Review</h4>
-        <div class="element2 lodging_dashboard">
+  <div class="mt-3">
+    <b-card-group deck>
+      <b-card border-variant="info" header="Average Travelling Time" align="center">
+        <b-card-text>
+          <vue-chart type="horizontalBar" :data="this.fillData" :bind="true"></vue-chart>
+        </b-card-text>
+      </b-card>
+      <b-card border-variant="info" header="Good Review" align="center">
+        <b-card-text>
           <wordcloud
             :data="this.getGoodReviews"
             nameKey="name"
@@ -23,11 +22,10 @@
             :margin="{top: 0, right: 15, bottom: 15, left: 15 }"
             style="height:195px"
           ></wordcloud>
-        </div>
-      </b-col>
-      <b-col class="element text-center">
-        <h4>Bad Review</h4>
-        <div class="lodging_dashboard">
+        </b-card-text>
+      </b-card>
+      <b-card border-variant="info" header="Bad Review" align="center">
+        <b-card-text>
           <wordcloud
             :data="this.getBadReviews"
             nameKey="name"
@@ -37,9 +35,32 @@
             :rotate="{from: 0, to: 0, numOfOrientation: 1 }"
             style="height:195px"
           ></wordcloud>
-        </div>
-      </b-col>
-    </b-row>
+        </b-card-text>
+      </b-card>
+    </b-card-group>    
+  </div>
+  <div class="mt-3">
+    <b-card-group deck>
+      <b-card border-variant="info" header="Faculty Breakdown" align="center">
+        <b-card-text>
+          <pie-chart :data="this.getFacultyBreakdown"></pie-chart>
+        </b-card-text>
+      </b-card>
+      <b-card border-variant="info" header="Room Type and Price" align="center">
+        <b-card-text>
+          <table style="width:100%" class="price-table">
+            <tr>
+              <th>Items to be paid</th>
+              <th>Price</th>
+            </tr>
+            <tr v-for="row in this.getLodgingInfo2" v-bind:key="row.id">
+              <td>{{row.id}}</td>
+              <td>{{row.value}}</td>
+            </tr>
+          </table>
+        </b-card-text>
+      </b-card>
+    </b-card-group>    
   </div>
 </body>
 </template>
@@ -222,7 +243,6 @@ export default {
 .header {
   padding-top: 72px;
   padding-bottom: 10px;
-  background-color: #EF7C00;
 }
 
 td,
@@ -237,8 +257,5 @@ tr:nth-child(even) {
 .lodging_dashboard {
   padding-top: 0px;
 }
-.element {
-  border-style: solid;
-  height: 50%;
-}
+
 </style>
