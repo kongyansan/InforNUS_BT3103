@@ -1,9 +1,41 @@
 <template>
 <body id="searchTable">
   <b-container fluid class="search_overall">
+    <div>
+      <b-row>
+        <b-col cols="6">
+          <router-link to="/courseSearch">
+            <b-button block variant="outline-primary">General</b-button>
+          </router-link>
+        </b-col>
+        <b-col cols="6">
+          <b-button block variant="outline-warning" v-b-modal.modal-1>Personalized</b-button>
+        </b-col>
+      </b-row>
+    </div>
+    <b-modal id="modal-1" hide-footer>
+      <h3>Choose your pre-university qualification:</h3>
+      <br>
+      <router-link to="/JCrecommendation">
+        <b-button block variant="outline-info">Junior College</b-button>
+      </router-link>
+      <router-link to="/polyRecommendation">
+        <b-button block variant="outline-dark">Polytechnic</b-button>
+      </router-link>
+      <br>
+    </b-modal>
+    <!--    <b-dropdown variant="warning" right text="Personalized">
+          <router-link to="/JCrecommendation">
+            <b-button variant="success">JC</b-button>
+          </router-link>
+          <b-dropdown-divider></b-dropdown-divider>
+          <router-link to="/polyRecommendation">
+            <b-dropdown-item>Item 3</b-dropdown-item>
+          </router-link>
+    </b-dropdown>-->
+    <br>
     <b-row>
       <b-col cols="3" class="searchcol">
-        <br>
         <h3>Search Filters:</h3>
         <p>Search for your ideal course</p>
         <div class="course_search">
@@ -29,7 +61,6 @@
         </div>
       </b-col>
       <b-col cols="9">
-        <br>
         <h2>Courses:</h2>
         <table id="myTable">
           <thead>
@@ -266,7 +297,7 @@ export default {
   display: inline-block;
 }
 .search_overall {
-  padding-top: 70px;
+  padding-top: 74px;
 }
 .searchcol {
   background-color: #D3D3D3;
