@@ -16,6 +16,7 @@
     "vue-chart": "2.0.0",
     "vue-chartkick": "0.5.0",
     "vue-router": "3.0.2",
+    "vue-star-rating": "1.6.1",
     "vue-wordcloud": "1.1.1",
     "vuefire": "1.4.5"
   },

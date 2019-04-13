@@ -3,42 +3,23 @@
   <div>
     <b-container fluid>
       <b-row>
-        <b-col sm="4">
-          <h1>{{selectedCourse.course_name}}</h1>
-        </b-col>
-        <b-col sm="5">
-          <router-link
-            v-bind:to="{name:'courseCareerDashboard', params: {course_name: selectedCourse.course_name}}"
-          >
-            <b-button variant="outline-primary">Careers</b-button>
-          </router-link>
+        <b-col>
+          <h1 class="header">{{selectedCourse.course_name}}</h1>
         </b-col>
       </b-row>
     </b-container>
   </div>
 
-  <b-container fluid>
-    <b-row>
-      <b-col sm="3">
-        <h2>School Fees:</h2>
-        <h3>{{selectedCourse.school_fees}}</h3>
-      </b-col>
-      <b-col sm="9">
-        <h2>Description</h2>
-        <p>
-          Today's businesses run on data. From web analytics and accounting to market research and demographics, our information-centric world generates countless terabytes of data year after year. Data analysts play the increasingly important role of making sense of all that data.
-          As a Business Analytics student, you will gain a solid foundation in the statistical and analytical methods that make up the backbone of data science. You'll learn to work with spreadsheets, aggregate data, evaluate statistical significance, and determine statistical trends.
-        </p>
-      </b-col>
-    </b-row>
-
-    <b-row fluid>
-      <b-col>
-        <h2>Cohort Demographic</h2>
-        <pie-chart :data="this.distributionInfo"></pie-chart>
-      </b-col>
-      <b-col>
-        <table class="Grade Profile" style="width:49%;">
+  <b-card-group deck>
+    <b-card border-variant="info" header="Description" align="center">
+      <b-card-text>
+        Today's businesses run on data. From web analytics and accounting to market research and demographics, our information-centric world generates countless terabytes of data year after year. Data analysts play the increasingly important role of making sense of all that data.
+        As a Business Analytics student, you will gain a solid foundation in the statistical and analytical methods that make up the backbone of data science. You'll learn to work with spreadsheets, aggregate data, evaluate statistical significance, and determine statistical trends.
+      </b-card-text>
+    </b-card>
+    <b-card border-variant="info" header="Indicative Grade Profile" align="center">
+      <b-card-text>
+        <table class="Grade Profile">
           <thead>
             <tr>
               <th>Qualification</th>
@@ -52,69 +33,72 @@
             </tr>
           </tbody>
         </table>
-      </b-col>
-    </b-row>
-  </b-container>
+      </b-card-text>
+    </b-card>
+    <b-card border-variant="info" header="Cohort Breakdown" align="center">
+      <b-card-text>
+        <pie-chart :data="this.distributionInfo"></pie-chart>
+      </b-card-text>
+    </b-card>
+  </b-card-group>
+  <br> 
+  <b-card-group deck>
 
-  <!--
-  <div class = "container-header">
-    <h1>{{selectedCourse.course_name}}</h1>
-    <router-link v-bind:to="{name:'courseCareerDashboard', params: {course_name: selectedCourse.course_name}}">
-    CAREER 
-  </router-link> 
-    <div>
-  </div>
-  
-  </div>
-  <div class="container-top">
-    <div class="square schoolFees">
-      <h2>School Fees:</h2>
-      <h3>{{selectedCourse.school_fees}}</h3>
-    </div>
-  <table class="Grade Profile" style="width:49%;">
-    <thead>
-      <tr>
-        <th>Qualification</th>
-        <th>Score (10th/90th Percentile)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="(value,key) in this.gradeProfile" :key="key">
-        <td>{{key}}</td>
-        <td>{{value}}</td>
-      </tr>
-    </tbody>
-  </table> 
+    <b-card border-variant="info" header="Student Ratings" align="center">
+      <b-card-text>
+        <b-list-group flush>
+          <b-list-group-item>Helpfulness of NUS</b-list-group-item>
+          <star-rating :rating="3.8" :read-only="true":border-width="4" border-color="#d8d8d8" :rounded-corners="true" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"></star-rating>
+          <b-list-group-item>Job Prepardness</b-list-group-item>
+          <star-rating :rating="3.8" :read-only="true":border-width="4" border-color="#d8d8d8" :rounded-corners="true" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"></star-rating>
+          <b-list-group-item>Overall Satisfaction</b-list-group-item>
+          <star-rating :rating="3.8" :read-only="true":border-width="4" border-color="#d8d8d8" :rounded-corners="true" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"></star-rating>
+        </b-list-group>
+      </b-card-text>
+    </b-card>  
 
-    <div class="square difficultyRating">
-      <h2>Difficulty Rating:</h2>
-      <h3>{{selectedCourse.difficulty_rating}}</h3>
-    </div>
+    <b-card border-variant="info" align="center">
+      <b-row>
+        <b-col> 
+          <b-card border-variant="info" header = "School Fees" align="center"> 
+            <b-card-text>
+              <h3>{{selectedCourse.school_fees}}</h3>
+            </b-card-text>
+          </b-card> 
+        </b-col> 
+      </b-row>
+      <br>
+        <b-row>
+        <b-col> 
+          <b-card border-variant="info" header = "Distribution of Honours" align="center"> 
+            <b-card-text>
+              <table id="graduateTable">
+          <thead>
+            <tr>
+              <th style="width:25%;">Honors</th>
+              <th style="width:25%;">Percentage(%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Highest Distinction</td>
+              <td>{{ selectedCourse.first_class }}</td>
+            </tr>
+            <tr>
+              <td>Distinction</td>
+              <td>{{ selectedCourse.second_class }}</td>
+            </tr>
+          </tbody>
+        </table>
+            </b-card-text>
+          </b-card> 
+        </b-col> 
+      </b-row>
+    </b-card>  
 
-    <div class="square courseRating">
-      <h2>Course Rating:</h2>
-      <h3>{{selectedCourse.course_rating}}</h3>
-    </div>
-
-  </div>
-  
-
-  <div class="container-mid">
-    <div class="info text">
-      <h2>Description</h2>
-      <p>
-        Today's businesses run on data. From web analytics and accounting to market research and demographics, our information-centric world generates countless terabytes of data year after year. Data analysts play the increasingly important role of making sense of all that data.
-        As a Business Analytics student, you will gain a solid foundation in the statistical and analytical methods that make up the backbone of data science. You'll learn to work with spreadsheets, aggregate data, evaluate statistical significance, and determine statistical trends.
-      </p>
-    </div>
-    <div class="info distribution">
-      <h2>Cohort Demographic</h2>
-      <pie-chart :data="this.distributionInfo"></pie-chart>
-    </div>
-  </div>
+  </b-card-group>
 
 
-  -->
 </body>
 </template> 
 
@@ -124,11 +108,16 @@
 import db from "../firebase.js";
 import VueChartKick from "vue-chartkick";
 import Chart from "chart.js";
+import StarRating from "vue-star-rating";
 
 export default {
   name: "courseDashboard",
   firebase: {
     courses: db.ref("course_admin_info/data")
+  },
+
+  components: {
+    StarRating
   },
 
   created() {
@@ -233,5 +222,7 @@ tr:nth-child(even) {
 .dashboardbody {
   padding-top: 70px;
 }
+.header {
+  text-align: center;
+}
 </style>
-

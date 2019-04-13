@@ -5,6 +5,7 @@ import vuefire from "vuefire";
 import Chart from "chart.js";
 import VueChartKick from "vue-chartkick";
 import BootstrapVue from "bootstrap-vue";
+import StarRating from "vue-star-rating";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
