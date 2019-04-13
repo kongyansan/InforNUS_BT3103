@@ -6,8 +6,10 @@
     </router-link> 
   </div>
 
-  <div class="poly_selection_pane" style="float:right">
-    <img id="poly_image" src="../assets/poly_image.jpg">
+  <div class="poly_selection_pane" style="float:right"> 
+    <router-link to="/polyRecommendation"> 
+    <img id="poly_image" src="../assets/poly_image.jpg"> 
+    </router-link> 
   </div>
 </body>
 </template>

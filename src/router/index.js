@@ -8,6 +8,7 @@ import courseDashboard from "@/components/courseDashboard";
 import courseSearch from "@/components/courseSearch";
 import lodgingDashboard from "@/components/lodgingDashboard";
 import JCrecommendation from "@/components/JCrecommendation";
+import polyRecommendation from "@/components/polyRecommendation";
 
 Vue.use(Router);
 
@@ -59,6 +60,12 @@ export default new Router({
       path: "/JCrecommendation",
       name: "JCrecommendation",
       component: JCrecommendation
+    },
+
+    {
+      path: "/polyRecommendation",
+      name: "polyRecommendation",
+      component: polyRecommendation
     }
   ]
 });

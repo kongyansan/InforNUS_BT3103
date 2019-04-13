@@ -3,9 +3,23 @@
   <div class="searchBar">
     <b-jumbotron text-variant="white" class="jumbo">
       <template slot="header" class="text-center">Search for available courses:</template>
+      <div>
+        <router-link to="/courseSearch">
+          <b-button v-b-toggle.collapse-1 variant="primary">Generalised</b-button>
+        </router-link>
+        <router-link to="/courseSelectionpane">
+          <b-button v-b-toggle.collapse-1 variant="primary">Personalised</b-button>
+        </router-link>
+      </div>
       <template slot="lead">More than 100 courses available here.</template>
-      <div class ="course_search">
-        <input type="text" v-model="search" id="myInput" placeholder="Search Courses" class="search">
+      <div class="course_search">
+        <input
+          type="text"
+          v-model="search"
+          id="myInput"
+          placeholder="Search Courses"
+          class="search"
+        >
         <b-button v-b-toggle.collapse-1 variant="primary">Filter by faculty</b-button>
         <b-collapse id="collapse-1" class="mt-2">
           <b-card>
@@ -187,12 +201,12 @@ export default {
 }
 .filter-options {
   color: black;
-} 
-
-.column-options{
-  color:  black; 
 }
-.courseSearch{
-  display:inline-block;
+
+.column-options {
+  color: black;
+}
+.courseSearch {
+  display: inline-block;
 }
 </style>
