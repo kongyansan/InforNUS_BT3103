@@ -1,6 +1,62 @@
 <template>
 <body id="searchTable">
-  <div class="searchBar">
+  <b-container fluid class="search_overall">
+    <b-row>
+      <b-col cols="3" class="searchcol">
+        <br>
+        <h3>Search Filters:</h3>
+        <p>Search for your ideal course</p>
+        <div class="course_search">
+          <input
+            type="text"
+            v-model="search"
+            id="myInput"
+            placeholder=" Search Courses"
+            class="search"
+          >
+        </div>
+        <br>
+        <h4>Filter by Faculty</h4>
+        <div v-for="option in options" :key="option.text" class="filter-options">
+          <input type="radio" v-model="selected" :value="option.text">
+          {{ option.text }}
+        </div>
+        <br>
+        <h4>Sort by:</h4>
+        <div v-for="column in columns" :key="column.text" class="column-options">
+          <input type="radio" v-model="selectedPara" :value="column.text">
+          {{ column.text }}
+        </div>
+      </b-col>
+      <b-col cols="9">
+        <br>
+        <h2>Courses:</h2>
+        <table id="myTable">
+          <thead>
+            <tr>
+              <th style="width:20%;">Course</th>
+              <th style="width:20%;">Faculty</th>
+              <th style="width:20%;">% of Students with Honors (Highest Distinction)</th>
+              <th style="width:20%;">% of Students with Honors (Distinction)</th>
+              <th style="width:20%;">Starting Salary ($ per month)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(course, idx) in selectedCourses" :key="idx">
+              <router-link
+                v-bind:to="{name:'courseDashboard', params: {course_name: course.course_name}}"
+              >{{ course.course_name }}</router-link>
+              <td>{{ course.home_faculty }}</td>
+              <td>{{ course.first_class }}</td>
+              <td>{{ course.second_class }}</td>
+              <td>{{ course.starting_salary }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </b-col>
+    </b-row>
+  </b-container>
+  <!--   <div class="searchBar">
     <b-jumbotron text-variant="white" class="jumbo">
       <template slot="header" class="text-center">Search for available courses:</template>
       <div>
@@ -10,7 +66,7 @@
         <router-link to="/courseSelectionpane">
           <b-button v-b-toggle.collapse-1 variant="primary">Personalised</b-button>
         </router-link>
-      </div>
+    </div>
       <template slot="lead">More than 100 courses available here.</template>
       <div class="course_search">
         <input
@@ -41,7 +97,7 @@
           </b-card>
         </b-collapse>
       </div>
-      <!--<div>
+      <div>
         <br>
         <b-button v-b-toggle.collapse-1 variant="primary">Filter by faculty</b-button>
         <b-collapse id="collapse-1" class="mt-2">
@@ -68,7 +124,7 @@
             </div>
           </b-card>
         </b-collapse>
-      </div>-->
+      </div>
     </b-jumbotron>
   </div>
   <table id="myTable">
@@ -95,7 +151,7 @@
     </tbody>
     <br>
     <br>
-  </table>
+  </table>-->
 </body>
 </template>
 
@@ -188,7 +244,7 @@ export default {
 };
 </script>
 
-<style>
+<style scope>
 .searchBar {
   padding-top: 50px;
 }
@@ -196,7 +252,7 @@ export default {
   background-color: #EF7C00;
 }
 .search {
-  width: 800px;
+  width: 250px;
   height: 45px;
 }
 .filter-options {
@@ -208,5 +264,11 @@ export default {
 }
 .courseSearch {
   display: inline-block;
+}
+.search_overall {
+  padding-top: 70px;
+}
+.searchcol {
+  background-color: #D3D3D3;
 }
 </style>
