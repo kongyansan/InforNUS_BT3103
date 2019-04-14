@@ -12,10 +12,7 @@
 
   <b-card-group deck>
     <b-card border-variant="info" header="Description" align="center">
-      <b-card-text>
-        Today's businesses run on data. From web analytics and accounting to market research and demographics, our information-centric world generates countless terabytes of data year after year. Data analysts play the increasingly important role of making sense of all that data.
-        As a Business Analytics student, you will gain a solid foundation in the statistical and analytical methods that make up the backbone of data science. You'll learn to work with spreadsheets, aggregate data, evaluate statistical significance, and determine statistical trends.
-      </b-card-text>
+      <b-card-text>{{selectedCourse.CourseDescription}}</b-card-text>
     </b-card>
     <b-card border-variant="info" header="Indicative Grade Profile" align="center">
       <b-card-text>
@@ -41,64 +38,81 @@
       </b-card-text>
     </b-card>
   </b-card-group>
-  <br> 
+  <br>
   <b-card-group deck>
-
     <b-card border-variant="info" header="Student Ratings" align="center">
       <b-card-text>
         <b-list-group flush>
           <b-list-group-item>Helpfulness of NUS</b-list-group-item>
-          <star-rating :rating="3.8" :read-only="true":border-width="4" border-color="#d8d8d8" :rounded-corners="true" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"></star-rating>
+          <star-rating
+            :rating="3.8"
+            :read-only="true"
+            :border-width="4"
+            border-color="#d8d8d8"
+            :rounded-corners="true"
+            :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
+          ></star-rating>
           <b-list-group-item>Job Prepardness</b-list-group-item>
-          <star-rating :rating="3.8" :read-only="true":border-width="4" border-color="#d8d8d8" :rounded-corners="true" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"></star-rating>
+          <star-rating
+            :rating="3.8"
+            :read-only="true"
+            :border-width="4"
+            border-color="#d8d8d8"
+            :rounded-corners="true"
+            :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
+          ></star-rating>
           <b-list-group-item>Overall Satisfaction</b-list-group-item>
-          <star-rating :rating="3.8" :read-only="true":border-width="4" border-color="#d8d8d8" :rounded-corners="true" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"></star-rating>
+          <star-rating
+            :rating="3.8"
+            :read-only="true"
+            :border-width="4"
+            border-color="#d8d8d8"
+            :rounded-corners="true"
+            :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
+          ></star-rating>
         </b-list-group>
       </b-card-text>
-    </b-card>  
+    </b-card>
 
     <b-card border-variant="info" align="center">
       <b-row>
-        <b-col> 
-          <b-card border-variant="info" header = "School Fees" align="center"> 
+        <b-col>
+          <b-card border-variant="info" header="School Fees" align="center">
             <b-card-text>
               <h3>{{selectedCourse.school_fees}}</h3>
             </b-card-text>
-          </b-card> 
-        </b-col> 
+          </b-card>
+        </b-col>
       </b-row>
       <br>
-        <b-row>
-        <b-col> 
-          <b-card border-variant="info" header = "Distribution of Honours" align="center"> 
+      <b-row>
+        <b-col>
+          <b-card border-variant="info" header="Distribution of Honours" align="center">
             <b-card-text>
               <table id="graduateTable">
-          <thead>
-            <tr>
-              <th style="width:25%;">Honors</th>
-              <th style="width:25%;">Percentage(%)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Highest Distinction</td>
-              <td>{{ selectedCourse.first_class }}</td>
-            </tr>
-            <tr>
-              <td>Distinction</td>
-              <td>{{ selectedCourse.second_class }}</td>
-            </tr>
-          </tbody>
-        </table>
+                <thead>
+                  <tr>
+                    <th style="width:25%;">Honors</th>
+                    <th style="width:25%;">Percentage(%)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Highest Distinction</td>
+                    <td>{{ selectedCourse.first_class }}</td>
+                  </tr>
+                  <tr>
+                    <td>Distinction</td>
+                    <td>{{ selectedCourse.second_class }}</td>
+                  </tr>
+                </tbody>
+              </table>
             </b-card-text>
-          </b-card> 
-        </b-col> 
+          </b-card>
+        </b-col>
       </b-row>
-    </b-card>  
-
+    </b-card>
   </b-card-group>
-
-
 </body>
 </template> 
 

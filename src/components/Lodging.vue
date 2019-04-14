@@ -40,7 +40,7 @@
 <script>
 class Lodging {
   constructor(name, cat, img) {
-    this.name = name.toLowerCase();
+    this.name = name;
     this.cat = cat;
     this.img = img;
   }

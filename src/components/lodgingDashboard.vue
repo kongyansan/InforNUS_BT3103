@@ -89,7 +89,7 @@ export default {
   },
 
   created() {
-    this.lodging_name = this.$route.params.lodging_name.toLowerCase();
+    this.lodging_name = this.$route.params.lodging_name;
   },
   data() {
     return {
@@ -119,7 +119,7 @@ export default {
         "School of Computing"
       ];
       for (var lodging of this.lodging_info) {
-        if (lodging.lodging_name.toLowerCase() == this.lodging_name) {
+        if (lodging.lodging_name.toLowerCase() == this.lodging_name.toLowerCase()) {
           for (var fac of faculties) {
             ans[fac] = lodging[fac];
             test.push([fac, lodging[fac]]);
@@ -132,7 +132,7 @@ export default {
       var ans = {};
       var defaultWords = [];
       for (var lodging of this.lodging_info) {
-        if (lodging.lodging_name.toLowerCase() == this.lodging_name) {
+        if (lodging.lodging_name.toLowerCase() == this.lodging_name.toLowerCase()) {
           for (var goodcomments of lodging.good_reviews) {
             if (!(goodcomments in ans)) {
               ans[goodcomments] = 0;
@@ -150,7 +150,7 @@ export default {
       var ans = {};
       var defaultWords = [];
       for (var lodging of this.lodging_info) {
-        if (lodging.lodging_name.toLowerCase() == this.lodging_name) {
+        if (lodging.lodging_name.toLowerCase() == this.lodging_name.toLowerCase()) {
           for (var badcomments of lodging.bad_reviews) {
             if (!(badcomments in ans)) {
               ans[badcomments] = 0;
@@ -202,7 +202,7 @@ export default {
         "School of Computing"
       ];
       for (var lodging of this.lodging_info) {
-        if (lodging.lodging_name.toLowerCase() === this.lodging_name) {
+        if (lodging.lodging_name.toLowerCase() === this.lodging_name.toLowerCase()) {
           for (var fac of travellingLabels) {
             // console.log('added')
             info.push(lodging[fac]);

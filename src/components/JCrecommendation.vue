@@ -73,7 +73,7 @@ export default {
   },
   data() {
     return {
-      search: 80,
+      search: 90,
       selected: "all",
       selectedPara: "starting_salary",
       options: [
@@ -125,7 +125,7 @@ export default {
        // filter values which are greater than the search input 
 
        let list = this.courses.filter(function(x){ 
-         return x.rank_point_10 >= goal; 
+         return x.rank_point_10 <= goal; 
        }); 
 
       console.log(list)
