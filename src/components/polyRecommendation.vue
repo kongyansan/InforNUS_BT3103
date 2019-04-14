@@ -1,6 +1,90 @@
 <template>
 <body id="searchTable">
-  <div class="searchBar">
+  <b-container fluid class="search_overall">
+    <div>
+      <b-row>
+        <b-col cols="6">
+          <router-link to="/courseSearch">
+            <b-button block variant="outline-primary">General</b-button>
+          </router-link>
+        </b-col>
+        <b-col cols="6">
+          <b-button block variant="outline-warning" v-b-modal.modal-1>Personalized</b-button>
+        </b-col>
+      </b-row>
+    </div>
+    <b-modal id="modal-1" hide-footer>
+      <h3>Choose your pre-university qualification:</h3>
+      <br>
+      <router-link to="/JCrecommendation">
+        <b-button block variant="outline-info">Junior College</b-button>
+      </router-link>
+      <router-link to="/polyRecommendation">
+        <b-button block variant="outline-dark">Polytechnic</b-button>
+      </router-link>
+      <br>
+    </b-modal> 
+    <br/>
+    <b-row>
+      <b-col cols = "3" class = "searchcol">
+        <h3>Search Filters:</h3>
+        <h6> Enter your GPA:</h6>
+        <input
+        type="text"
+        v-model="gpa_input"
+        id="myInput"
+        placeholder="Enter your GPA"
+        class="search"
+        >
+        <br/>
+        <br/>
+        <h6> Input your Diploma course:</h6>
+        <vue-single-select v-model="selected_diploma" :options="diplomaCourses" :required="true"></vue-single-select>
+        <br>
+        <h4>Filter by Faculty</h4>
+        <div v-for="option in options" :key="option.text" class="filter-options">
+          <input type="radio" v-model="selected" :value="option.text">
+          {{ option.text }}
+        </div>
+        <br>
+        <h4>Sort by:</h4>
+        <div v-for="column in columns" :key="column.text" class="column-options">
+          <input type="radio" v-model="selectedPara" :value="column.text">
+          {{ column.text }}
+        </div>
+        <br/>
+        <br/>
+      </b-col>
+      <b-col cols = "9">
+        <table id="myTable">
+          <thead>
+            <tr>
+              <th style="width:20%;">Course</th>
+              <th style="width:20%;">Faculty</th>
+              <th style="width:20%;">10th Percentile (GPA)</th>
+              <th style="width:20%;">90th Percentile (GPA)</th>
+              <th style="width:20%;">Starting Salary ($ per month)</th>
+            </tr>
+          </thead>
+
+            <tbody>
+              <tr v-for="(course, idx) in selectedCourses" :key="idx">
+                <router-link
+                  v-bind:to="{name:'courseDashboard', params: {course_name: course.course_name}}"
+                >{{ course.course_name }}</router-link>
+                <td>{{ course.home_faculty }}</td>
+                <td>{{ course.gpa_10 }}</td>
+                <td>{{ course.gpa_90 }}</td>
+                <td>{{ course.starting_salary }}</td>
+              </tr>
+            </tbody>
+          <br>
+          <br>
+        </table>
+      </b-col>
+    </b-row>
+    </b-container>
+  <!--<div class="searchBar">
     <b-jumbotron text-variant="white" class="jumbo">
       <template slot="header" class="text-center">Enter your GPA and Diploma Course:</template>
       <template slot="lead">More than 100 courses available here.</template>
@@ -65,7 +149,7 @@
     </tbody>
     <br>
     <br>
-  </table>
+  </table>-->
 </body>
 </template>
 <script>
@@ -176,22 +260,15 @@ export default {
 };
 </script>
 
-<style>
-.searchBar {
-  padding-top: 50px;
+<style scoped>
+.search_overall{
+  padding-top: 74px;
 }
-.jumbo {
-  background-color: #EF7C00;
+.searchcol {
+  background-color: #D3D3D3;
 }
 .search {
-  width: 800px;
+  width: 250px;
   height: 45px;
-}
-.filter-options {
-  color: black;
-}
-
-.column-options {
-  color: black;
 }
 </style>

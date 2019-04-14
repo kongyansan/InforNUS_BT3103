@@ -59,6 +59,8 @@
           <input type="radio" v-model="selectedPara" :value="column.text">
           {{ column.text }}
         </div>
+        <br/>
+        <br/>
       </b-col>
       <b-col cols="9">
         <h2>Courses:</h2>
