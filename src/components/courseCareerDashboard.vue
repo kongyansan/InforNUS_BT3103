@@ -45,11 +45,49 @@
         </table>
           </b-card-text>
         </b-card>
+        <b-card border-variant="info" header="How Prepared are you?" align="center">
+      <b-card-text>
+        <b-list-group flush>
+          <b-list-group-item>Usefulness of University Residence Experience</b-list-group-item>
+                    <star-rating
+            class="stars"
+            :rating="this.residence_prepared"
+            :read-only="true"
+            :border-width="4"
+            border-color="#d8d8d8"
+            :rounded-corners="true"
+            :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
+          ></star-rating>
+          <b-list-group-item>Usefulness of Overseas Experience</b-list-group-item>
+          <star-rating
+            class="stars"
+            :rating="this.overseas_prepared"
+            :read-only="true"
+            :border-width="4"
+            border-color="#d8d8d8"
+            :rounded-corners="true"
+            :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
+          ></star-rating>
+          <b-list-group-item>Usefulness of Local Internship</b-list-group-item>
+          <star-rating
+            class="stars"
+            :rating="selectedCourse.overall_satisfaction"
+            :read-only="true"
+            :border-width="4"
+            border-color="#d8d8d8"
+            :rounded-corners="true"
+            :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
+          ></star-rating>
+        </b-list-group>
+      </b-card-text>
+    </b-card>
+        <!--
         <b-card border-variant="info" header="Starting Pay Comparison" align="center">
           <b-card-text>
             <line-chart :data="this.salaryInfo"></line-chart>
           </b-card-text>
         </b-card>
+        -->
       </b-card-group>
   </div>
 
@@ -130,6 +168,7 @@
 import VueChartKick from "vue-chartkick";
 import Chart from "chart.js";
 import db from "../firebase.js";
+import StarRating from "vue-star-rating";
 
 export default {
   name: "courseCareerDashboard",
@@ -139,6 +178,9 @@ export default {
   },
   created() {
     this.course_name = this.$route.params.course_name;
+  },
+  components: {
+    StarRating
   },
   computed: {
     selectedCourse: function() {
@@ -275,7 +317,42 @@ export default {
 
       console.log(ans);
       return ans;
+    },
+    
+    overseas_prepared: function(){
+      let ans = {};
+      let selectStudents = this.career_info.filter(
+        // returns array of students
+        student =>
+          student.course.toLowerCase() ==
+          this.selectedCourse.course_name.toLowerCase()
+      );
+      let total = 0;
+      for(var student in selectStudents){
+        total += student["Preparation (Local Internship)"];
+      }
+      let avg = 0;
+      avg = total/selectStudents.length;
+      return avg;
+    },
+
+      residence_prepared: function(){
+      let ans = {};
+      let selectStudents = this.career_info.filter(
+        // returns array of students
+        student =>
+          student.course.toLowerCase() ==
+          this.selectedCourse.course_name.toLowerCase()
+      );
+      let total = 0;
+      for(var student in selectStudents){
+        total += student["Preparation (Local Internship)"];
+      }
+      let avg = 0;
+      avg = total/selectStudents.length;
+      return avg;
     }
+    
   }
 };
 </script>

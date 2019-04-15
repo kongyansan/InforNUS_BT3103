@@ -1,15 +1,16 @@
 <template>
 <body class="dashboardbody">
-  <div>
-    <b-container fluid>
-      <b-row>
-        <b-col>
-          <h1 class="header">{{selectedCourse.course_name}}</h1>
-        </b-col>
-      </b-row>
-    </b-container>
+    <div class="header text-center">
+    <h1>{{this.course_name}}
+      <router-link
+              v-bind:to="{name:'courseCareerDashboard', params: {course_name: selectedCourse.course_name}}"
+            >
+              <b-button variant="outline-primary">Career Info</b-button>
+            </router-link>
+    </h1>
+    <p> For more information, please visit their webpage <a href = "selectedCourse.link"> here </a> </p>
   </div>
-
+  <br>
   <b-card-group deck>
     <b-card border-variant="info" header="Description" align="center">
       <b-card-text>{{selectedCourse.CourseDescription}}</b-card-text>
@@ -45,7 +46,8 @@
         <b-list-group flush>
           <b-list-group-item>Helpfulness of NUS</b-list-group-item>
           <star-rating
-            :rating="3.8"
+            class="stars"
+            :rating="selectedCourse.course_helpfulness"
             :read-only="true"
             :border-width="4"
             border-color="#d8d8d8"
@@ -54,7 +56,8 @@
           ></star-rating>
           <b-list-group-item>Job Prepardness</b-list-group-item>
           <star-rating
-            :rating="3.8"
+            class="stars"
+            :rating="selectedCourse.job_prep"
             :read-only="true"
             :border-width="4"
             border-color="#d8d8d8"
@@ -63,7 +66,8 @@
           ></star-rating>
           <b-list-group-item>Overall Satisfaction</b-list-group-item>
           <star-rating
-            :rating="3.8"
+            class="stars"
+            :rating="selectedCourse.overall_satisfaction"
             :read-only="true"
             :border-width="4"
             border-color="#d8d8d8"
@@ -234,9 +238,12 @@ tr:nth-child(even) {
 }
 
 .dashboardbody {
-  padding-top: 70px;
+  padding-top: 10px;
 }
 .header {
   text-align: center;
+}
+.stars {
+  margin-left: 150px;
 }
 </style>

@@ -2,6 +2,7 @@
 <body>
   <div class="header text-center">
     <h1>{{this.lodging_name}}</h1>
+    <p> For more information, please visit their webpage <a href = "selectedLodging.link"> here </a> </p>
   </div>
   <div class="mt-3">
     <b-card-group deck>
@@ -98,6 +99,15 @@ export default {
     };
   },
   computed: {
+    selectedLodging: function() {
+      // filter to match the parameter containing the selected course
+      let ans = this.loding_info.filter(
+        course => lodging_info.lodging_name == this.lodging_name
+      );
+      console.log(ans[0]);
+
+      return ans[0];
+    },
     getFacultyBreakdown() {
       let ans = {};
       for (var student of this.student_lodging_info) {

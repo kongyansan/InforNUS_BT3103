@@ -2,7 +2,11 @@
 <body>
   <div class="select">
     <b-jumbotron text-variant="white" class="jumbo">
-      <template slot="header" class="text-center">Select your preferred lodging type:</template>
+      <template slot="header" class="text-center">Select your preferred lodging type</template>
+      <b-button v-b-modal.residence_explain>Unsure of the differences?</b-button>
+      <b-modal id="residence_explain" hide-footer>
+        <h3>What is the differences among the residences in NUS?</h3>
+      </b-modal>
       <br>
       <div class="test text-center">
         <div class="filter">

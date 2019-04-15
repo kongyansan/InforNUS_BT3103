@@ -5,11 +5,22 @@
       <b-row>
         <b-col cols="6">
           <router-link to="/courseSearch">
-            <b-button block variant="outline-primary">General</b-button>
+            <b-button
+              block
+              variant="outline-primary"
+              v-b-tooltip.hover
+              title="Select me if you know what course you want!"
+            >General</b-button>
           </router-link>
         </b-col>
         <b-col cols="6">
-          <b-button block variant="outline-warning" v-b-modal.modal-1>Personalized</b-button>
+          <b-button
+            block
+            variant="outline-warning"
+            v-b-tooltip.hover
+            title="Select me if you do not know what course you want!"
+            v-b-modal.modal-1
+          >Personalized</b-button>
         </b-col>
       </b-row>
     </div>
@@ -19,6 +30,7 @@
       <router-link to="/JCrecommendation">
         <b-button block variant="outline-info">Junior College</b-button>
       </router-link>
+      <br>
       <router-link to="/polyRecommendation">
         <b-button block variant="outline-dark">Polytechnic</b-button>
       </router-link>
@@ -59,8 +71,8 @@
           <input type="radio" v-model="selectedPara" :value="column.text">
           {{ column.text }}
         </div>
-        <br/>
-        <br/>
+        <br>
+        <br>
       </b-col>
       <b-col cols="9">
         <h2>Courses:</h2>

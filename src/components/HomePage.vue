@@ -67,26 +67,31 @@
         <b-col>
           <i class="fas fa-info-circle fa-3x"></i>
           <br>
-          <h6>provide you with all the information that you might need when you choose NUS</h6>
+          <h6>Centralised Platform for all the courses available in NUS</h6>
         </b-col>
         <b-col>
           <i class="fas fa-chart-line fa-3x"></i>
-          <h6>Do the Analytics for you so you can make a more informed choice.</h6>
+          <h6>Through Analytics, suggest courses that suits you the best.</h6>
         </b-col>
-        <b-col>3 of 3</b-col>
+        <b-col>
+          <i class="fas fa-home fa-3x"></i>
+          <h6>Centralised Platfomr for all housing information in NUS</h6>
+        </b-col>
       </b-row>
       <br>
       <br>
     </b-container>
   </div>
-
+  <!--
   <div class="designers">
     <div class="title text-center">
       <br>
       <br>
       <h3>Brought to you by:</h3>
       <br>
+   
     </div>
+ 
     <b-container fluid class>
       <b-row>
         <b-col>
@@ -105,7 +110,9 @@
       <br>
       <br>
     </b-container>
+ 
   </div>
+  -->
 </body>
 </template>
 
