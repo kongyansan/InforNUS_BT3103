@@ -46,7 +46,7 @@
           </table>
         </b-card-text>
       </b-card>
-      <b-card border-variant="info" header="How Prepared are you?" align="center">
+      <b-card border-variant="info" header="How have NUS experiences helped you in your current job?" align="center">
         <b-card-text>
           <b-list-group flush>
             <b-list-group-item>Relevance of Course</b-list-group-item>
@@ -59,7 +59,7 @@
               :rounded-corners="true"
               :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
             ></star-rating>
-            <b-list-group-item>Usefulness of Overseas Experience</b-list-group-item>
+            <b-list-group-item>Usefulness of Overseas Experience (NUS related)</b-list-group-item>
             <star-rating
               class="stars"
               :rating="this.overseas_prepared"
@@ -69,7 +69,7 @@
               :rounded-corners="true"
               :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
             ></star-rating>
-            <b-list-group-item>Usefulness of Local Internship</b-list-group-item>
+            <b-list-group-item>Usefulness of Local Internship (NUS related)</b-list-group-item>
             <star-rating
               class="stars"
               :rating="this.intern_prepared"
