@@ -48,10 +48,10 @@
         <b-card border-variant="info" header="How Prepared are you?" align="center">
       <b-card-text>
         <b-list-group flush>
-          <b-list-group-item>Usefulness of University Residence Experience</b-list-group-item>
+          <b-list-group-item>Helpfulness of Course</b-list-group-item>
                     <star-rating
             class="stars"
-            :rating="this.residence_prepared"
+            :rating="this.selectedCourse.course_helpfulness"
             :read-only="true"
             :border-width="4"
             border-color="#d8d8d8"
@@ -71,7 +71,7 @@
           <b-list-group-item>Usefulness of Local Internship</b-list-group-item>
           <star-rating
             class="stars"
-            :rating="selectedCourse.overall_satisfaction"
+            :rating="this.intern_prepared"
             :read-only="true"
             :border-width="4"
             border-color="#d8d8d8"
@@ -326,14 +326,16 @@ export default {
         student =>
           student.course.toLowerCase() ==
           this.selectedCourse.course_name.toLowerCase()
-      );
+      ); 
       let total = 0;
-      for(var student in selectStudents){
-        total += student["Preparation (Local Internship)"];
+      for(var student of selectStudents){
+        total += student["preparation_nus_overseas"];
       }
       let avg = 0;
       avg = total/selectStudents.length;
-      return avg;
+
+      console.log(avg); 
+      return Math.round(avg);
     },
 
       residence_prepared: function(){
@@ -345,12 +347,30 @@ export default {
           this.selectedCourse.course_name.toLowerCase()
       );
       let total = 0;
-      for(var student in selectStudents){
-        total += student["Preparation (Local Internship)"];
+      for(var student of selectStudents){
+        total += student["preparation_residential_experience"];
       }
       let avg = 0;
       avg = total/selectStudents.length;
-      return avg;
+      return Math.round(avg);
+    }, 
+
+    intern_prepared: function(){
+      let ans = {};
+      let selectStudents = this.career_info.filter(
+        // returns array of students
+        student =>
+          student.course.toLowerCase() ==
+          this.selectedCourse.course_name.toLowerCase()
+      );
+      let total = 0;
+      for(var student of selectStudents){
+        total += student["preparation_local_intern"];
+      }
+      let avg = 0;
+      avg = total/selectStudents.length; 
+      console.log(avg); 
+      return Math.round(avg); 
     }
     
   }

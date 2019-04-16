@@ -180,7 +180,7 @@ export default {
       var test = [];
       var ans = {};
       for (var lodging of this.lodging_info) {
-        if (lodging.lodging_name.toLowerCase() == this.lodging_name) {
+        if (lodging.lodging_name.toLowerCase() == this.lodging_name.toLowerCase()) {
           test.push({
             id: "Double Room with Air Con",
             value: lodging.Type_Of_Rooms.Double_AC
