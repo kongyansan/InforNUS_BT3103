@@ -2,10 +2,12 @@
 <body>
   <div class="header text-center">
     <h1>{{this.lodging_name}}</h1>
-    <p> For more information, please visit their webpage <a href = "selectedLodging.link"> here </a> </p>
+    <p>For more information, please visit their webpage
+      <a href="selectedLodging.link">here</a>
+    </p>
   </div>
   <div class="mt-3">
-    <b-card-group deck>
+    <b-card-group deck class="dashboardInfo">
       <b-card border-variant="info" header="Average Travelling Time" align="center">
         <b-card-text>
           <vue-chart type="horizontalBar" :data="this.fillData" :bind="true"></vue-chart>
@@ -38,10 +40,10 @@
           ></wordcloud>
         </b-card-text>
       </b-card>
-    </b-card-group>    
+    </b-card-group>
   </div>
   <div class="mt-3">
-    <b-card-group deck>
+    <b-card-group deck class="dashboardInfo">
       <b-card border-variant="info" header="Faculty Breakdown" align="center">
         <b-card-text>
           <pie-chart :data="this.getFacultyBreakdown"></pie-chart>
@@ -61,7 +63,7 @@
           </table>
         </b-card-text>
       </b-card>
-    </b-card-group>    
+    </b-card-group>
   </div>
 </body>
 </template>
@@ -129,7 +131,9 @@ export default {
         "School of Computing"
       ];
       for (var lodging of this.lodging_info) {
-        if (lodging.lodging_name.toLowerCase() == this.lodging_name.toLowerCase()) {
+        if (
+          lodging.lodging_name.toLowerCase() == this.lodging_name.toLowerCase()
+        ) {
           for (var fac of faculties) {
             ans[fac] = lodging[fac];
             test.push([fac, lodging[fac]]);
@@ -142,7 +146,9 @@ export default {
       var ans = {};
       var defaultWords = [];
       for (var lodging of this.lodging_info) {
-        if (lodging.lodging_name.toLowerCase() == this.lodging_name.toLowerCase()) {
+        if (
+          lodging.lodging_name.toLowerCase() == this.lodging_name.toLowerCase()
+        ) {
           for (var goodcomments of lodging.good_reviews) {
             if (!(goodcomments in ans)) {
               ans[goodcomments] = 0;
@@ -160,7 +166,9 @@ export default {
       var ans = {};
       var defaultWords = [];
       for (var lodging of this.lodging_info) {
-        if (lodging.lodging_name.toLowerCase() == this.lodging_name.toLowerCase()) {
+        if (
+          lodging.lodging_name.toLowerCase() == this.lodging_name.toLowerCase()
+        ) {
           for (var badcomments of lodging.bad_reviews) {
             if (!(badcomments in ans)) {
               ans[badcomments] = 0;
@@ -180,7 +188,9 @@ export default {
       var test = [];
       var ans = {};
       for (var lodging of this.lodging_info) {
-        if (lodging.lodging_name.toLowerCase() == this.lodging_name.toLowerCase()) {
+        if (
+          lodging.lodging_name.toLowerCase() == this.lodging_name.toLowerCase()
+        ) {
           test.push({
             id: "Double Room with Air Con",
             value: lodging.Type_Of_Rooms.Double_AC
@@ -212,7 +222,9 @@ export default {
         "School of Computing"
       ];
       for (var lodging of this.lodging_info) {
-        if (lodging.lodging_name.toLowerCase() === this.lodging_name.toLowerCase()) {
+        if (
+          lodging.lodging_name.toLowerCase() === this.lodging_name.toLowerCase()
+        ) {
           for (var fac of travellingLabels) {
             // console.log('added')
             info.push(lodging[fac]);
@@ -249,9 +261,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .header {
-  padding-top: 72px;
+  padding-top: 90px;
   padding-bottom: 10px;
 }
 
@@ -267,5 +279,8 @@ tr:nth-child(even) {
 .lodging_dashboard {
   padding-top: 0px;
 }
-
+.dashboardInfo {
+  padding-left: 60px;
+  padding-right: 60px;
+}
 </style>

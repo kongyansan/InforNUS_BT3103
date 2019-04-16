@@ -5,11 +5,13 @@
       <b-row>
         <b-col cols="6">
           <router-link to="/courseSearch">
-            <b-button block variant="outline-primary">General</b-button>
+            <b-button block variant="outline-primary" v-b-tooltip.hover
+              title="Select me if you know what course you want!">General</b-button>
           </router-link>
         </b-col>
         <b-col cols="6">
-          <b-button block variant="outline-warning" v-b-modal.modal-1>Personalized</b-button>
+          <b-button block variant="outline-warning" v-b-tooltip.hover
+            title="Select me if you do not know what course you want!" v-b-modal.modal-1>Personalized</b-button>
         </b-col>
       </b-row>
     </div>
@@ -19,6 +21,7 @@
       <router-link to="/JCrecommendation">
         <b-button block variant="outline-info">Junior College</b-button>
       </router-link>
+      <br/>
       <router-link to="/polyRecommendation">
         <b-button block variant="outline-dark">Polytechnic</b-button>
       </router-link>
@@ -84,72 +87,6 @@
       </b-col>
     </b-row>
     </b-container>
-  <!--<div class="searchBar">
-    <b-jumbotron text-variant="white" class="jumbo">
-      <template slot="header" class="text-center">Enter your GPA and Diploma Course:</template>
-      <template slot="lead">More than 100 courses available here.</template>
-      <input
-        type="text"
-        v-model="gpa_input"
-        id="myInput"
-        placeholder="Enter your GPA"
-        class="search"
-      >
-      <vue-single-select v-model="selected_diploma" :options="diplomaCourses" :required="true"></vue-single-select>
-      <div>
-        <br>
-        <b-button v-b-toggle.collapse-1 variant="primary">Filter by faculty</b-button>
-        <b-collapse id="collapse-1" class="mt-2">
-          <b-card>
-            <p class="card-text"></p>
-            <div v-for="option in options" :key="option.text" class="filter-options">
-              <input type="radio" v-model="selected" :value="option.text">
-              {{ option.text }}
-            </div>
-          </b-card>
-        </b-collapse>
-      </div>
-
-      <div>
-        <br>
-        <b-button v-b-toggle.collapse-1 variant="primary">Sort by Column</b-button>
-        <b-collapse id="collapse-1" class="mt-2">
-          <b-card>
-            <p class="card-text"></p>
-            <div v-for="column in columns" :key="column.text" class="column-options">
-              <input type="radio" v-model="selectedPara" :value="column.text">
-              {{ column.text }}
-            </div>
-          </b-card>
-        </b-collapse>
-      </div>
-    </b-jumbotron>
-  </div>
-  <table id="myTable">
-    <thead>
-      <tr>
-        <th style="width:20%;">Course</th>
-        <th style="width:20%;">Faculty</th>
-        <th style="width:20%;">10th Percentile (GPA)</th>
-        <th style="width:20%;">90th Percentile (GPA)</th>
-        <th style="width:20%;">Starting Salary ($ per month)</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr v-for="(course, idx) in selectedCourses" :key="idx">
-        <router-link
-          v-bind:to="{name:'courseDashboard', params: {course_name: course.course_name}}"
-        >{{ course.course_name }}</router-link>
-        <td>{{ course.home_faculty }}</td>
-        <td>{{ course.gpa_10 }}</td>
-        <td>{{ course.gpa_90 }}</td>
-        <td>{{ course.starting_salary }}</td>
-      </tr>
-    </tbody>
-    <br>
-    <br>
-  </table>-->
 </body>
 </template>
 <script>
@@ -262,13 +199,24 @@ export default {
 
 <style scoped>
 .search_overall{
-  padding-top: 74px;
+  padding-top: 95px;
 }
 .searchcol {
-  background-color: #D3D3D3;
+  background-color: #F0F0F0;
+  height: 100%;
 }
 .search {
   width: 250px;
   height: 45px;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even) {
+  background-color: #FFF9E6;
 }
 </style>

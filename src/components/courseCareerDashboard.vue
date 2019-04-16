@@ -11,7 +11,7 @@
   </div> 
   <br/>
   <div>
-    <b-card-group deck>
+    <b-card-group deck class ="dashboardInfo">
         <b-card border-variant="info" header="Industry Breakdown" align="center">
           <b-card-text>
             <pie-chart :data="this.industryInfo"></pie-chart>
@@ -26,7 +26,7 @@
   </div>
   <br/>
   <div>
-    <b-card-group deck>
+    <b-card-group deck class ="dashboardInfo">
         <b-card border-variant="info" header="Common Jobs" align="center">
           <b-card-text>
             <table id="jobTable">
@@ -91,76 +91,6 @@
       </b-card-group>
   </div>
 
-
-<!--<div>
-    <b-container fluid>
-      <b-row>
-        <b-col sm="4">
-          <h1>{{selectedCourse.course_name}}</h1>
-        </b-col>
-        <b-col sm="5">
-          <router-link
-            v-bind:to="{name:'courseDashboard', params: {course_name: selectedCourse.course_name}}"
-          >
-            <b-button variant="outline-primary">Admin Info</b-button>
-          </router-link>
-        </b-col>
-      </b-row>
-    </b-container>
-  </div>
-
-  <b-container fluid>
-    <b-row>
-      <b-col md="4">
-        <h4>Industry Breakdown</h4>
-        <pie-chart :data="this.industryInfo"></pie-chart>
-      </b-col>
-      <b-col md="7">
-        <h4>Starting Pay Comparison</h4>
-        <line-chart :data="this.salaryInfo"></line-chart>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <h4>Common Jobs</h4>
-        <table id="jobTable">
-          <thead>
-            <tr>
-              <th style="width:25%;">Job Title</th>
-              <th style="width:25%;">Pay (per month)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(value,key) in this.jobInfo" :key="key">
-              <td>{{ key }}</td>
-              <td>{{ value }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </b-col>
-      <b-col>
-        <h4>Distribution of Honors</h4>
-        <table id="graduateTable">
-          <thead>
-            <tr>
-              <th style="width:25%;">Honors</th>
-              <th style="width:25%;">Percentage(%)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Highest Distinction</td>
-              <td>{{ selectedCourse.first_class }}</td>
-            </tr>
-            <tr>
-              <td>Distinction</td>
-              <td>{{ selectedCourse.second_class }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </b-col>
-    </b-row>
-  </b-container>-->
 </body>
 </template>
 
@@ -377,9 +307,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .header {
-  padding-top: 75px;
+  padding-top: 90px;
 }
 .container-top {
   margin-top: 10px;
@@ -397,5 +327,13 @@ tr:nth-child(even) {
 }
 .lodging_dashboard {
   padding-top: 0px;
+}
+
+.dashboardInfo{
+  padding-right: 60px;
+  padding-left: 60px;
+}
+.stars {
+  margin-left: 100px;
 }
 </style>

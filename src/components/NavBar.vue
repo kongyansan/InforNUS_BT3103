@@ -1,6 +1,7 @@
 <template>
 <body>
   <b-navbar class="topnav" topmargin="0">
+    <img src="../assets/applogo.jpg" width="80" height="70">
     <router-link to="/">Home</router-link>
     <router-link to="/courseSearch">Course</router-link>
     <router-link to="/lodging">Lodging</router-link>
@@ -8,7 +9,7 @@
 </body>
 </template>
 
-<style>
+<style scoped>
 .topnav {
   background-color: #003d7c;
   overflow: hidden;

@@ -289,13 +289,7 @@ export default {
 };
 </script>
 
-<style scope>
-.searchBar {
-  padding-top: 50px;
-}
-.jumbo {
-  background-color: #EF7C00;
-}
+<style scoped>
 .search {
   width: 250px;
   height: 45px;
@@ -311,9 +305,19 @@ export default {
   display: inline-block;
 }
 .search_overall {
-  padding-top: 74px;
+  padding-top: 95px;
 }
 .searchcol {
-  background-color: #D3D3D3;
+  background-color: #F0F0F0;
+  height: 100%;
+}
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even) {
+  background-color: #FFF9E6;
 }
 </style>

@@ -136,9 +136,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .carousel {
-  padding-top: 35px;
+  padding-top: 40px;
 }
 
 .designers {

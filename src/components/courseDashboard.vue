@@ -8,39 +8,47 @@
               <b-button variant="outline-primary">Career Info</b-button>
             </router-link>
     </h1>
-    <p> For more information, please visit their webpage <a href = "selectedCourse.link"> here </a> </p>
+    <p> For more information, please visit their webpage <a v-bind:href = "selectedCourse.link"> here </a> </p>
   </div>
   <br>
-  <b-card-group deck>
+  <b-card-group deck class = "dashboardInfo">
     <b-card border-variant="info" header="Description" align="center">
       <b-card-text>{{selectedCourse.CourseDescription}}</b-card-text>
     </b-card>
-    <b-card border-variant="info" header="Indicative Grade Profile" align="center">
-      <b-card-text>
-        <table class="Grade Profile">
-          <thead>
-            <tr>
-              <th>Qualification</th>
-              <th>Score (10th/90th Percentile)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(value,key) in this.gradeProfile" :key="key">
-              <td>{{key}}</td>
-              <td>{{value}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </b-card-text>
-    </b-card>
-    <b-card border-variant="info" header="Cohort Breakdown" align="center">
-      <b-card-text>
-        <pie-chart :data="this.distributionInfo"></pie-chart>
-      </b-card-text>
+    <b-card border-variant = "info">
+      <b-row>
+        <b-card border-variant="info" header="Indicative Grade Profile" align="center">
+          <b-card-text>
+            <table class="Grade Profile">
+              <thead>
+                <tr>
+                  <th>Qualification</th>
+                  <th>Score (10th/90th Percentile)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(value,key) in this.gradeProfile" :key="key">
+                  <td>{{key}}</td>
+                  <td>{{value}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </b-card-text>
+        </b-card>
+      </b-row>
+      <br/>
+      <br/>
+      <b-row>
+        <b-card border-variant="info" header="Cohort Breakdown" align="center">
+          <b-card-text>
+            <pie-chart :data="this.distributionInfo"></pie-chart>
+          </b-card-text>
+        </b-card>
+      </b-row>
     </b-card>
   </b-card-group>
   <br>
-  <b-card-group deck>
+  <b-card-group deck class = "dashboardInfo">
     <b-card border-variant="info" header="Student Ratings" align="center">
       <b-card-text>
         <b-list-group flush>
@@ -187,7 +195,7 @@ export default {
 };
 </script> 
 
-<style>
+<style scoped>
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -212,24 +220,6 @@ tr:nth-child(even) {
   margin-right: 5px;
 }
 
-.container-top {
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.container-mid {
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
-}
-
-.info {
-  float: left;
-  background-color: #d3d3d3;
-  width: 49.5%;
-}
 
 .Grade {
   margin-top: 10px;
@@ -241,9 +231,14 @@ tr:nth-child(even) {
   padding-top: 10px;
 }
 .header {
-  text-align: center;
+  padding-top: 90px;
 }
 .stars {
   margin-left: 150px;
+}
+
+.dashboardInfo{
+  padding-left: 60px;
+  padding-right: 60px;
 }
 </style>

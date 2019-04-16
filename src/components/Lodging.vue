@@ -98,7 +98,7 @@ export default {
           "college",
           require("../assets/rvrc.jpg")
         ),
-        new Lodging("PGP", "PGP", require("../assets/PGP.jpg"))
+        new Lodging("PGP", "PGP", require("../assets/PGPR.jpg"))
       ],
       selectedCategory: "All"
     };
@@ -120,9 +120,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .jumbo {
-  padding-top: 100px;
+  padding-top: 120px;
   background-color: #EF7C00;
   width: full;
 }
