@@ -93,7 +93,7 @@ export default {
   name: "courseSearch",
   firebase: function() {
     return {
-      courses: db.ref("course_admin_info/data")
+      courses: db.ref("jc_course_info/data")
     };
   },
   data() {
@@ -143,14 +143,22 @@ export default {
 
     selectedCourses: function() {
       let goal = this.search;
-      console.log(goal);
-      console.log(this.courses);
 
-      // filter values which are greater than the search input
+      let rank_point_list = []; 
 
-      let list = this.courses.filter(function(x) {
-        return x.rank_point_10 <= goal;
-      });
+      for(var row of this.courses){ 
+        if(row.rank_point <= goal) rank_point_list.push(row.rank_point); 
+      }      
+      
+      // filter values which are lesser than the search input 
+      goal = rank_point_list[rank_point_list.length - 1]; 
+      console.log(goal);  
+
+      let list = []; 
+
+      for(var row of this.courses){ 
+        if(row.rank_point == goal) list = row.courses; 
+      }
 
       console.log(list);
 
