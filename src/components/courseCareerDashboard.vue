@@ -1,35 +1,36 @@
 <template>
 <body>
-  <div class = "header text-center">
-    <h1>{{this.course_name}}
+  <div class="header text-center">
+    <h1>
+      {{this.course_name}}
       <router-link
-            v-bind:to="{name:'courseDashboard', params: {course_name: selectedCourse.course_name}}"
-          >
-            <b-button variant="outline-primary">Admin Info</b-button>
-          </router-link>
+        v-bind:to="{name:'courseDashboard', params: {course_name: selectedCourse.course_name}}"
+      >
+        <b-button variant="outline-primary">Admin Info</b-button>
+      </router-link>
     </h1>
-  </div> 
-  <br/>
-  <div>
-    <b-card-group deck class ="dashboardInfo">
-        <b-card border-variant="info" header="Industry Breakdown" align="center">
-          <b-card-text>
-            <pie-chart :data="this.industryInfo"></pie-chart>
-          </b-card-text>
-        </b-card>
-        <b-card border-variant="info" header="Starting Pay Comparison" align="center">
-          <b-card-text>
-            <line-chart :data="this.salaryInfo"></line-chart>
-          </b-card-text>
-        </b-card>
-      </b-card-group>
   </div>
-  <br/>
+  <br>
   <div>
-    <b-card-group deck class ="dashboardInfo">
-        <b-card border-variant="info" header="Common Jobs" align="center">
-          <b-card-text>
-            <table id="jobTable">
+    <b-card-group deck class="dashboardInfo">
+      <b-card border-variant="info" header="Industry Breakdown" align="center">
+        <b-card-text>
+          <pie-chart :data="this.industryInfo"></pie-chart>
+        </b-card-text>
+      </b-card>
+      <b-card border-variant="info" header="Starting Pay Comparison" align="center">
+        <b-card-text>
+          <line-chart :data="this.salaryInfo"></line-chart>
+        </b-card-text>
+      </b-card>
+    </b-card-group>
+  </div>
+  <br>
+  <div>
+    <b-card-group deck class="dashboardInfo">
+      <b-card border-variant="info" header="Common Jobs" align="center">
+        <b-card-text>
+          <table id="jobTable">
             <thead>
               <tr>
                 <th style="width:25%;">Job Title</th>
@@ -42,55 +43,54 @@
                 <td>{{ value }}</td>
               </tr>
             </tbody>
-        </table>
-          </b-card-text>
-        </b-card>
-        <b-card border-variant="info" header="How Prepared are you?" align="center">
-      <b-card-text>
-        <b-list-group flush>
-          <b-list-group-item>Helpfulness of Course</b-list-group-item>
-                    <star-rating
-            class="stars"
-            :rating="this.selectedCourse.course_helpfulness"
-            :read-only="true"
-            :border-width="4"
-            border-color="#d8d8d8"
-            :rounded-corners="true"
-            :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
-          ></star-rating>
-          <b-list-group-item>Usefulness of Overseas Experience</b-list-group-item>
-          <star-rating
-            class="stars"
-            :rating="this.overseas_prepared"
-            :read-only="true"
-            :border-width="4"
-            border-color="#d8d8d8"
-            :rounded-corners="true"
-            :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
-          ></star-rating>
-          <b-list-group-item>Usefulness of Local Internship</b-list-group-item>
-          <star-rating
-            class="stars"
-            :rating="this.intern_prepared"
-            :read-only="true"
-            :border-width="4"
-            border-color="#d8d8d8"
-            :rounded-corners="true"
-            :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
-          ></star-rating>
-        </b-list-group>
-      </b-card-text>
-    </b-card>
-        <!--
+          </table>
+        </b-card-text>
+      </b-card>
+      <b-card border-variant="info" header="How Prepared are you?" align="center">
+        <b-card-text>
+          <b-list-group flush>
+            <b-list-group-item>Relevance of Course</b-list-group-item>
+            <star-rating
+              class="stars"
+              :rating="this.job_relevance"
+              :read-only="true"
+              :border-width="4"
+              border-color="#d8d8d8"
+              :rounded-corners="true"
+              :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
+            ></star-rating>
+            <b-list-group-item>Usefulness of Overseas Experience</b-list-group-item>
+            <star-rating
+              class="stars"
+              :rating="this.overseas_prepared"
+              :read-only="true"
+              :border-width="4"
+              border-color="#d8d8d8"
+              :rounded-corners="true"
+              :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
+            ></star-rating>
+            <b-list-group-item>Usefulness of Local Internship</b-list-group-item>
+            <star-rating
+              class="stars"
+              :rating="this.intern_prepared"
+              :read-only="true"
+              :border-width="4"
+              border-color="#d8d8d8"
+              :rounded-corners="true"
+              :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
+            ></star-rating>
+          </b-list-group>
+        </b-card-text>
+      </b-card>
+      <!--
         <b-card border-variant="info" header="Starting Pay Comparison" align="center">
           <b-card-text>
             <line-chart :data="this.salaryInfo"></line-chart>
           </b-card-text>
         </b-card>
-        -->
-      </b-card-group>
+      -->
+    </b-card-group>
   </div>
-
 </body>
 </template>
 
@@ -248,27 +248,27 @@ export default {
       console.log(ans);
       return ans;
     },
-    
-    overseas_prepared: function(){
+
+    overseas_prepared: function() {
       let ans = {};
       let selectStudents = this.career_info.filter(
         // returns array of students
         student =>
           student.course.toLowerCase() ==
           this.selectedCourse.course_name.toLowerCase()
-      ); 
+      );
       let total = 0;
-      for(var student of selectStudents){
+      for (var student of selectStudents) {
         total += student["preparation_nus_overseas"];
       }
       let avg = 0;
-      avg = total/selectStudents.length;
+      avg = total / selectStudents.length;
 
-      console.log(avg); 
+      console.log(avg);
       return Math.round(avg);
     },
 
-      residence_prepared: function(){
+    job_relevance: function() {
       let ans = {};
       let selectStudents = this.career_info.filter(
         // returns array of students
@@ -277,15 +277,15 @@ export default {
           this.selectedCourse.course_name.toLowerCase()
       );
       let total = 0;
-      for(var student of selectStudents){
-        total += student["preparation_residential_experience"];
+      for (var student of selectStudents) {
+        total += student["job_relevance"];
       }
       let avg = 0;
-      avg = total/selectStudents.length;
+      avg = total / selectStudents.length;
       return Math.round(avg);
-    }, 
+    },
 
-    intern_prepared: function(){
+    intern_prepared: function() {
       let ans = {};
       let selectStudents = this.career_info.filter(
         // returns array of students
@@ -294,15 +294,14 @@ export default {
           this.selectedCourse.course_name.toLowerCase()
       );
       let total = 0;
-      for(var student of selectStudents){
+      for (var student of selectStudents) {
         total += student["preparation_local_intern"];
       }
       let avg = 0;
-      avg = total/selectStudents.length; 
-      console.log(avg); 
-      return Math.round(avg); 
+      avg = total / selectStudents.length;
+      console.log(avg);
+      return Math.round(avg);
     }
-    
   }
 };
 </script>
@@ -329,7 +328,7 @@ tr:nth-child(even) {
   padding-top: 0px;
 }
 
-.dashboardInfo{
+.dashboardInfo {
   padding-right: 60px;
   padding-left: 60px;
 }
