@@ -2,8 +2,9 @@
 <body>
   <div class="header text-center">
     <h1>{{this.lodging_name}}</h1>
-    <p>For more information, please visit their webpage
-      <a href="selectedLodging.link">here</a>
+    <p>
+      For more information, please visit their webpage
+      <a v-bind:href="selectedLodging.link">here</a>
     </p>
   </div>
   <div class="mt-3">
@@ -102,13 +103,17 @@ export default {
   },
   computed: {
     selectedLodging: function() {
-      // filter to match the parameter containing the selected course
-      let ans = this.loding_info.filter(
-        course => lodging_info.lodging_name == this.lodging_name
+      // filter to match the parameter containing the selected lodging
+      let ans = this.lodging_info.filter(
+        lodging => lodging.lodging_name == this.lodging_name
       );
       console.log(ans[0]);
-
       return ans[0];
+    },
+
+    getLodgingLink() {
+      console.log(this.selectedLodging);
+      return this.selectedLodging.link;
     },
     getFacultyBreakdown() {
       let ans = {};
