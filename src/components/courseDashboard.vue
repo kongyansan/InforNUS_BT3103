@@ -62,7 +62,7 @@
             :rounded-corners="true"
             :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
           ></star-rating>
-          <b-list-group-item>Job Prepardness</b-list-group-item>
+          <b-list-group-item>Job Preparedness</b-list-group-item>
           <star-rating
             class="stars"
             :rating="selectedCourse.job_prep"

@@ -75,7 +75,7 @@
         </b-col>
         <b-col>
           <i class="fas fa-home fa-3x"></i>
-          <h6>Centralised Platfomr for all housing information in NUS</h6>
+          <h6>Centralised Platform for all housing information in NUS</h6>
         </b-col>
       </b-row>
       <br>

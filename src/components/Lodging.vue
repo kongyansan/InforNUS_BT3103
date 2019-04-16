@@ -1,11 +1,35 @@
 <template>
 <body>
   <div class="select">
-    <b-jumbotron text-variant="white" class="jumbo">
+    <b-jumbotron class="jumbo">
       <template slot="header" class="text-center">Select your preferred lodging type</template>
       <b-button v-b-modal.residence_explain>Unsure of the differences?</b-button>
-      <b-modal id="residence_explain" hide-footer>
-        <h3>What is the differences among the residences in NUS?</h3>
+      <b-modal size="xl" class = "residence_modal" id="residence_explain" hide-footer>
+        <h3 text-variant="black">What are the differences among the residences in NUS?</h3>
+        <br/>
+        <div> 
+          <ul class="list-unstyled">
+            <b-media tag="li">
+              <h5 class="mt-0 mb-1">Halls</h5>
+              <p class="mb-0">
+                Emphasis is placed on student development through active involvement in community work, sport and the arts
+              </p>
+            </b-media>
+
+            <b-media tag="li" class="my-4">
+              <h5 class="mt-0 mb-1">Residential Colleges</h5>
+              <p class="mb-0">
+                Emphasis on integrated living and learening experiences. Residents not only read modules which are multidisciplinary, innovative and taught in small classes, but are also exposed to a host of different settings through Master’s Teas, forums, and talks where they actively engage with distinguished visitors and interesting speakers.
+              </p>
+            </b-media>
+            <b-media tag="li">
+              <h5 class="mt-0 mb-1">PGPR</h5>
+              <p class="mb-0">
+                Provides students with a minimal framework of community engagement with the flexibility to experience independent living
+              </p>
+            </b-media>
+          </ul>
+        </div> 
       </b-modal>
       <br>
       <div class="test text-center">
@@ -125,6 +149,7 @@ export default {
   padding-top: 120px;
   background-color: #EF7C00;
   width: full;
+  color: white;
 }
 .options {
   padding-right: 80px;
@@ -133,5 +158,13 @@ export default {
 .row {
   padding-right: 20px;
   padding-left: 20px;
+}
+
+.residence_modal {
+  color: black;
+}
+
+.list_unstyled{
+  display: inline; 
 }
 </style>
